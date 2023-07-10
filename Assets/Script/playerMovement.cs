@@ -17,7 +17,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 4f;
 
     private enum MovementState { idle, walk, jump};
-    //private MovementState state = MovementState.idle;
+    private MovementState state = MovementState.idle;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,7 @@ public class playerMovement : MonoBehaviour
         boxCol = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
+        sprite.flipX = true;
     }
 
     // Update is called once per frame
@@ -49,12 +50,12 @@ public class playerMovement : MonoBehaviour
         if (dirX > 0f)
         {
             state = MovementState.walk;
-            sprite.flipX = false;
+            sprite.flipX = true;
         }
         else if (dirX < 0f)
         {
             state = MovementState.walk;
-            sprite.flipX = true;
+            sprite.flipX = false;
         }
         else
         {

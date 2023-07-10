@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collect1
   - Spike1
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,12 +14,12 @@ TagManager:
   - 
   - Water
   - UI
+  - 
+  - 
+  - 
+  - 
+  - Enemies
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 
@@ -48,4 +49,7 @@ TagManager:
     locked: 0
   - name: Terrain
     uniqueID: 2093796191
+    locked: 0
+  - name: Player
+    uniqueID: 3276647991
     locked: 0
