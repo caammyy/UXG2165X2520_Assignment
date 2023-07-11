@@ -9,4 +9,5 @@ public class DataScript
     public string timestamp;
     public string error;
     public List<RefCharacter> characterList;
+    public List<RefDialogue> dialogueList;
 }

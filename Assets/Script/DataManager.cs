@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour
 
     public void LoadRefData()
     {
-        string filePath = Path.Combine(Application.dataPath, "Script/Data/charactersData.txt");
+        string filePath = Path.Combine(Application.dataPath, "Script/Data/dialogueTestData.txt");
         //persistent data path is for when you want to save the game data(?), data path is for the data alr inside unity
 
         string dataString = File.ReadAllText(filePath);

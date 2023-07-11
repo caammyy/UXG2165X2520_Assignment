@@ -26,4 +26,10 @@ public static class Game
         return null;
     }
 
+    private static List<Dialogue> dialogueList;
+
+    public static List<Dialogue> GetDialopgueList()
+    {
+        return dialogueList;
+    }
 }
