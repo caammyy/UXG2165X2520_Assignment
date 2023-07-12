@@ -10,6 +10,8 @@ public class playerLife : MonoBehaviour
 
     [SerializeField] private float initialHealth;
     public float currentHealth { get; private set; }
+
+    [SerializeField] playerTutorial playerTut;
      
     private void Awake()
     {
@@ -28,6 +30,15 @@ public class playerLife : MonoBehaviour
         {
             Hurt(1);
             
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Trigger"))
+        {
+            playerTut.InitializeNextTutorial();
+            Destroy(collision.gameObject);
         }
     }
     private void Hurt(float dmg)
