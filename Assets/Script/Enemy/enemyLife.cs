@@ -14,7 +14,6 @@ public class enemyLife : MonoBehaviour
     void Start()
     {
         currentHealth = slimeHealth;
-        Debug.Log(currentHealth);
     }
 
     public void TakeDamage(int damage)
@@ -30,7 +29,6 @@ public class enemyLife : MonoBehaviour
     }
     void Die()
     {
-        Debug.Log(currentHealth);
         //anim
         anim.SetBool("dead", true);
         //disable

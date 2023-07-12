@@ -1005,7 +1005,7 @@ Transform:
   m_Children:
   - {fileID: 1210195041}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &445031532
 MonoBehaviour:
@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: 580610816}
   - component: {fileID: 580610819}
   - component: {fileID: 580610820}
-  m_Layer: 4
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2507,7 +2507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1093018783}
-  m_Layer: 4
+  m_Layer: 7
   m_Name: attackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8587,6 +8587,7 @@ GameObject:
   - component: {fileID: 1591280453}
   - component: {fileID: 1591280452}
   - component: {fileID: 1591280457}
+  - component: {fileID: 1591280458}
   m_Layer: 10
   m_Name: Slime
   m_TagString: Slime
@@ -8742,6 +8743,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1591280452}
   slimeHealth: 10
+--- !u!114 &1591280458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591280451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d51ed765c670454eb7227a327ab00f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 1
+  range: 1.5
+  damage: 2
+  coll: {fileID: 1591280454}
+  collDistance: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1592875430
 GameObject:
   m_ObjectHideFlags: 0
@@ -9339,6 +9360,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6548109470109122710, guid: 08efb3709afc8214e9e4909c113cd41f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7530309352285612329, guid: 08efb3709afc8214e9e4909c113cd41f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
