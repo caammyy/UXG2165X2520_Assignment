@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -5119,16 +5119,16 @@ TextureImporter:
       UI books & more_216: 1281733591
       UI books & more_157: -607897472
       UI books & more_65: 2118059644
-      UI books & more_154: 1776749444
-      UI books & more_93: -1184652557
       UI books & more_167: 1786029431
+      UI books & more_93: -1184652557
+      UI books & more_154: 1776749444
       UI books & more_5: -544634793
       UI books & more_54: 494181917
       UI books & more_73: -906980303
       UI books & more_183: -1486530885
       UI books & more_118: -184857804
-      UI books & more_148: 1818810303
       UI books & more_187: 1823122505
+      UI books & more_148: 1818810303
       UI books & more_85: 2127905402
       UI books & more_109: 1491397517
       UI books & more_160: -1465756914
@@ -5211,11 +5211,11 @@ TextureImporter:
       UI books & more_77: 847085499
       UI books & more_203: 1377585636
       UI books & more_145: -1522406064
+      UI books & more_217: 261353461
       UI books & more_149: -1488791259
       UI books & more_89: -1442192381
-      UI books & more_125: 238242155
       UI books & more_173: 21403807
-      UI books & more_217: 261353461
+      UI books & more_125: 238242155
       UI books & more_75: -1751137912
       UI books & more_156: 1903170619
       UI books & more_72: 1410089974
@@ -5238,19 +5238,19 @@ TextureImporter:
       UI books & more_199: 265314785
       UI books & more_35: 21812360
       UI books & more_104: -865270069
-      UI books & more_81: 327754339
+      UI books & more_202: 453360880
       UI books & more_235: 1958634627
       UI books & more_56: 1040402337
       UI books & more_126: -1275947308
       UI books & more_60: -1207230913
+      UI books & more_81: 327754339
       UI books & more_116: -48808408
-      UI books & more_215: -573030668
-      UI books & more_202: 453360880
       UI books & more_36: -1684445706
       UI books & more_17: -1675545587
-      UI books & more_63: -1464887185
-      UI books & more_103: 331841183
       UI books & more_198: -1386230651
+      UI books & more_63: -1464887185
+      UI books & more_215: -573030668
+      UI books & more_103: 331841183
       UI books & more_64: 1504367874
       UI books & more_98: 2020536138
       UI books & more_21: -1202741056
