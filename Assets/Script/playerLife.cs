@@ -8,22 +8,37 @@ public class playerLife : MonoBehaviour
     private Animator ani;
     private Rigidbody2D rb;
 
+    [SerializeField] private float initialHealth;
+    public float currentHealth { get; private set; }
+     
+    private void Awake()
+    {
+        currentHealth = initialHealth;
+
+    }
     private void Start()
     {
         ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Spike1"))
+        if (collision.gameObject.CompareTag("Slime"))
         {
-            Hurt();
+            Hurt(1);
+            
         }
     }
-    private void Hurt()
+    private void Hurt(float dmg)
     {
+        currentHealth = Mathf.Clamp(currentHealth - dmg, 0, initialHealth);
         ani.SetTrigger("hurt");
-        rb.bodyType = RigidbodyType2D.Static;
+        if (currentHealth == 0f)
+        {
+            ani.SetBool("death", true);
+            rb.bodyType = RigidbodyType2D.Static;
+        }
     }
     private void RestartLevel()
     {

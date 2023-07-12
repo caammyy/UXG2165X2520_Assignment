@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Collect1
-  - Spike1
   - Enemy
+  - Slime
   layers:
   - Default
   - TransparentFX
