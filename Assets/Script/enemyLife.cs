@@ -34,6 +34,7 @@ public class enemyLife : MonoBehaviour
         //anim
         anim.SetBool("dead", true);
         //disable
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
     }

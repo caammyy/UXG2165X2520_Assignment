@@ -14,10 +14,9 @@ public class playerMovement : MonoBehaviour
     
     private float dirX = 0f;
     [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private float jumpForce = 4f;
+    [SerializeField] private float jumpForce = 5f;
 
     private enum MovementState { idle, walk, jump};
-    private MovementState state = MovementState.idle;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +65,7 @@ public class playerMovement : MonoBehaviour
         {
             state = MovementState.jump;
         }
+
         ani.SetInteger("state", (int)state); 
     }
 
