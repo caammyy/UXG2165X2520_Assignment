@@ -61,6 +61,7 @@ public class playerTutorial : MonoBehaviour
         currentTutorial += 1;
         if(currentTutorial == 1)
         {
+            ani.SetBool("tutorial1", false);
             ani.SetBool("tutorial2", true);
         }
         tutorials[currentTutorial] = true;
