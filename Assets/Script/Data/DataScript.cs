@@ -5,9 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class DataScript
 {
-    public string result;
-    public string timestamp;
-    public string error;
     // vvvv these names should follow our excel sheet page names vvvv
     public List<RefCharacter> Characters;
     public List<RefMob> Mob;

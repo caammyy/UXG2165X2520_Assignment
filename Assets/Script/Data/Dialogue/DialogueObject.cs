@@ -8,4 +8,9 @@ public class DialogueObject : ScriptableObject
 
     public string[] Character => characterName;
     public string[] Dialogue => dialogue;
+    
+    //put the dialogue list into ^this dialogue
+    //character: foreach dialogue, if current is left, insert left, else insert right
+    
+    //within the dialogue, if current is left, left image
 }

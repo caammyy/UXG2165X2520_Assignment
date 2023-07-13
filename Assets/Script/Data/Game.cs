@@ -56,7 +56,7 @@ public static class Game
     //dialogue
     private static List<Dialogue> dialogueList;
 
-    public static List<Dialogue> GetDialopgueList()
+    public static List<Dialogue> GetDialogueList()
     {
         return dialogueList;
     }
@@ -65,4 +65,13 @@ public static class Game
     {
         dialogueList = dList;
     }
+
+    //DialogueObject
+    //getdialogueobjectlist
+
+    //setdialogueobjectlist 
+
+    //getdialoguecharacterlist
+
+    //setdialoguecharacterlist
 }

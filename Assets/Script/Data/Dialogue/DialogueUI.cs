@@ -8,6 +8,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text characterName;
     [SerializeField] private TMP_Text dialogueMessage;
     [SerializeField] private DialogueObject testDialogue;
+    //private DialogueObject testDialogue;
 
     private TypewriterEffect typewriterEffect;
 
@@ -16,6 +17,7 @@ public class DialogueUI : MonoBehaviour
         typewriterEffect = GetComponent<TypewriterEffect>();
         CloseDialogueBox();
         ShowDialogue(testDialogue);
+        //testDialogue = Game.GetDialogueObjectList();
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
