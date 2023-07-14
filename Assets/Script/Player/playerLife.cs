@@ -41,7 +41,7 @@ public class playerLife : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-    private void Hurt(float dmg)
+    public void Hurt(float dmg)
     {
         currentHealth = Mathf.Clamp(currentHealth - dmg, 0, initialHealth);
         ani.SetTrigger("hurt");
