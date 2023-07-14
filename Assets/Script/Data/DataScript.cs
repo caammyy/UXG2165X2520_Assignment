@@ -6,8 +6,11 @@ using UnityEngine;
 public class DataScript
 {
     // vvvv these names should follow our excel sheet page names vvvv
+    public List<RefDialogue> Dialogue;
     public List<RefCharacter> Characters;
     public List<RefMob> Mob;
+    public List<RefSpawn> Spawn;
     public List<RefWeapon> Weapons;
-    public List<RefDialogue> alwyndialogue;
+    public List<RefGameLevel> GameLevel;
+    public List<RefPlayerLevel> PlayerLevel;
 }

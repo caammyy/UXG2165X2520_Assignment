@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class RefMob
+public class RefGameLevel
 {
-    public string mobID;
-    public string mobType;
+    public int gameLevelID;
+    public int cutsceneSetID;
 }

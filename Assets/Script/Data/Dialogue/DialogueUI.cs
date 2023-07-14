@@ -1,44 +1,75 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text characterName;
     [SerializeField] private TMP_Text dialogueMessage;
-    [SerializeField] private DialogueObject testDialogue;
+    // [SerializeField] privateDialogueObject testDialogue;
     //private DialogueObject testDialogue;
-
     private TypewriterEffect typewriterEffect;
 
-    private void Start()
+    void Start()
     {
         typewriterEffect = GetComponent<TypewriterEffect>();
-        CloseDialogueBox();
-        ShowDialogue(testDialogue);
+        //CloseDialogueBox();
         //testDialogue = Game.GetDialogueObjectList();
     }
-
-    public void ShowDialogue(DialogueObject dialogueObject)
+    void Update()
+    {
+        StartCoroutine(DialogueAttempt());
+    }
+    public void ShowDialogue()
     {
         dialogueBox.SetActive(true);
         //characterName.text = "Ah Boy";
-        StartCoroutine(StepThroughDialogue(dialogueObject));
+        StartCoroutine(StepThroughDialogue());
     }
 
-    private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
+    public IEnumerator DialogueAttempt()
     {
-
-        foreach (string dialogue in dialogueObject.Dialogue)
+        List<Dialogue> Testdi = Game.GetDialogueList();
+        foreach(Dialogue d in Testdi)
         {
+            if(d.currentSpeaker == "Left")
+            {
+                characterName.text = d.leftSpeaker;
+            }
+            else
+            {
+                characterName.text = d.rightSpeaker;
+            }
+        }
+        yield return new WaitForSeconds(1);
+    }
+    public IEnumerator StepThroughDialogue()
+    {
+        List<Dialogue> dialogues = Game.GetDialogueList();
+        for(int i = 0; i< Game.GetDialogueList().Count; i++)
+        {
+            if(dialogues[i].currentSpeaker == "Left")
+            {
+                characterName.text = dialogues[i].leftSpeaker;
+            }
+            else
+            {
+                characterName.text = dialogues[i].rightSpeaker;
+            }
+            yield return null;
+        }
+        yield return null;
+        //foreach (string dialogue in dialogueObject.Dialogue)
+        //{
             //string characterName = dialogueObject.characterName;
             //haracterName.text = ;
-            yield return typewriterEffect.Run(dialogue, dialogueMessage);
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        }
+            //yield return typewriterEffect.Run(dialogue, dialogueMessage);
+            //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        //}
 
-        CloseDialogueBox();
+        //CloseDialogueBox();
     }
 
     private void CloseDialogueBox()
@@ -47,6 +78,7 @@ public class DialogueUI : MonoBehaviour
         characterName.text = string.Empty;
         dialogueMessage.text = string.Empty;
     }
+
 
     /**private void Start()
     {

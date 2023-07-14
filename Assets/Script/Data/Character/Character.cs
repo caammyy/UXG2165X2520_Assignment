@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //from JY W8 Demo 1 
-public class Character
+public class Character  
 {
     public string characterID { get; }
     public string characterName { get; }
