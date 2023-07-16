@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this.gameObject);
         DataManager datamanager = GetComponent<DataManager>();
         datamanager.LoadRefData();
+
     }
 
     // Update is called once per frame

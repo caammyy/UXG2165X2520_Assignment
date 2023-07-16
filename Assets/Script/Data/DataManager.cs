@@ -17,7 +17,7 @@ public class DataManager : MonoBehaviour
     {
         string datastring = File.ReadAllText(filepath);
         T Data = JsonUtility.FromJson<T>(datastring);
-        Debug.Log(datastring);
+        //Debug.Log(datastring);
         return Data;
     }
     public void LoadRefData()
@@ -82,7 +82,7 @@ public class DataManager : MonoBehaviour
             dialogueList.Add(dialogue);
         }
         Game.SetDialogueList(dialogueList);
-        Debug.Log(Game.GetDialogueList().Count);
+        //Debug.Log(Game.GetDialogueList().Count);
 
         //gamelevel
         List<GameLevel> gamelevelList = new List<GameLevel>();

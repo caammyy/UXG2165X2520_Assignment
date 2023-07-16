@@ -79,14 +79,7 @@ public static class Game
         dialogueList = eList;
     }
 
-    public static Dialogue GetDialogueByDialogueID(int cutsceneID)
-    {
-        foreach(Dialogue d in dialogueList)
-        {
-            if (d.cutsceneRefID == cutsceneID) return d;
-        }
-        return null;
-    }
+
 
     //game level
     private static List<GameLevel> gamelevelList;

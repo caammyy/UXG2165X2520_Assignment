@@ -5,28 +5,47 @@ using TMPro;
 
 public class DialogueAttempt : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public TextMeshProUGUI charactername;
-    public bool waitforInput = true;
-    List<Dialogue> testdi;
+    //GameObject dialoguebox;
+    public TextMeshProUGUI Testname;
+    public TextMeshProUGUI DialogueText;
+    TypewriterEffect typewritereffect;
+    bool waitforinput = true;
     void Start()
     {
-        testdi = Game.GetDialogueList();
-        Debug.Log(testdi.Count);
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         StartCoroutine(DialogueAttempts());
+        if(waitforinput && Input.GetKeyDown(KeyCode.K))
+        {
+            waitforinput = false;
+        }
     }
     public IEnumerator DialogueAttempts()
     {
-        foreach(Dialogue d in testdi)
+        List<Dialogue> Testdi = Game.GetDialogueList();
+        for (int t = 0; t < Game.GetDialogueList().Count; t++)
         {
-            charactername.text = d.dialogue;
-            Debug.Log(d.dialogue);
+            waitforinput = true;
+            
+            while (waitforinput)
+            {
+                yield return null;
+            }
+            DialogueText.text = Testdi[t].dialogue;
+            if (Testdi[t].currentSpeaker == "Left")
+            {
+                Testname.text = Testdi[t].leftSpeaker;
+            }
+            if (Testdi[t].currentSpeaker == "Right")
+            {
+                Testname.text = Testdi[t].rightSpeaker;
+            }
+            yield return null;
+
+            Debug.Log("Test");
         }
         yield return null;
     }
