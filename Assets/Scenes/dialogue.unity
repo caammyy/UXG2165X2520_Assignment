@@ -638,8 +638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f28f2661a4a0f8429d9d14c690c68fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactername: {fileID: 2074537448}
-  waitforInput: 1
+  Testname: {fileID: 2074537448}
+  DialogueText: {fileID: 983167018}
 --- !u!1 &1927794770
 GameObject:
   m_ObjectHideFlags: 0

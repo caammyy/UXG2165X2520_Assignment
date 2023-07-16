@@ -44,6 +44,10 @@ public class DialogueAttempt : MonoBehaviour
                 Testname.text = Testdi[t].rightSpeaker;
             }
             yield return null;
+            if (Testdi[t].nextcutsceneRefID == -2)
+            {
+                Testname.text = Testdi[t].choices;
+            }
 
             Debug.Log("Test");
         }
