@@ -6,7 +6,7 @@ public class enemyAttack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
     [SerializeField] private float range;
-    [SerializeField] private int damage;
+    [SerializeField] public int damage;
     [SerializeField] private BoxCollider2D coll;
     [SerializeField] private float collDistance;
     [SerializeField] private LayerMask playerLayer;
@@ -45,7 +45,6 @@ public class enemyAttack : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center + transform.right * range * transform.localScale.x * collDistance,
             new Vector3(coll.bounds.size.x * range, coll.bounds.size.y, coll.bounds.size.z), 0, Vector2.left, 0, playerLayer);
-        Debug.Log("player spotted");
 
         if(hit.collider != null)
         {

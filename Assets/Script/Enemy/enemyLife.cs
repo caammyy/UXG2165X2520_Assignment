@@ -30,10 +30,16 @@ public class enemyLife : MonoBehaviour
     void Die()
     {
         //anim
+        anim.SetBool("move", false);
         anim.SetBool("dead", true);
-        //disable
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        //disable
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+        
+    }
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }

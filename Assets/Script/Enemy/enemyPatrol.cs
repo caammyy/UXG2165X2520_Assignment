@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class enemyPatrol : MonoBehaviour
 {
-    [Header ("Patrol Points")]
-    [SerializeField] private Transform leftEdge;
-    [SerializeField] private Transform rightEdge;
+    [Header("Patrol Points")]
+    private Transform leftEdge;
+    private Transform rightEdge;
 
     [Header("Enemy")]
-    [SerializeField] private Transform enemy;
+    public Transform enemy;
 
     [Header("Movement")]
     [SerializeField] private float speed;
@@ -21,41 +21,53 @@ public class enemyPatrol : MonoBehaviour
     private float idleTimer;
 
     [Header("Animator")]
-    [SerializeField] private Animator ani;
+    Animator ani;
 
     private void Awake()
     {
         iniScale = enemy.localScale;
-    }
-    private void OnDisable()
-    {
-        ani.SetBool("move", false);
+        ani = enemy.GetComponent<Animator>();
+        foreach (var trans in FindObjectsOfType<Transform>())
+        {
+            if (trans.name == "LeftEdge")
+            {
+                leftEdge = trans;
+            }
+            else if (trans.name == "RightEdge")
+            {
+                rightEdge = trans;
+            }
+        }
     }
 
     private void Update()
     {
-        if (movingLeft)
+        if (!ani.GetBool("dead"))
         {
-            if(enemy.position.x >= leftEdge.position.x)
+            if (movingLeft)
             {
-                MoveInDirection(-1);
+                if (enemy.position.x >= leftEdge.position.x)
+                {
+                    MoveInDirection(-1);
+                }
+                else
+                {
+                    DirectionChange();
+                }
             }
             else
             {
-                DirectionChange();
+                if (enemy.position.x <= rightEdge.position.x)
+                {
+                    MoveInDirection(1);
+                }
+                else
+                {
+                    DirectionChange();
+                }
             }
         }
-        else
-        {
-            if(enemy.position.x <= rightEdge.position.x)
-            {
-                MoveInDirection(1);
-            }
-            else
-            {
-                DirectionChange();
-            }
-        }
+        
     }
 
    private void DirectionChange()
@@ -67,9 +79,7 @@ public class enemyPatrol : MonoBehaviour
         if(idleTimer > idleDuration)
             movingLeft = !movingLeft;
     }
-
-
-    private void MoveInDirection(int dir)
+    public void MoveInDirection(int dir)
     {
         idleTimer = 0;
         ani.SetBool("move", true);
@@ -77,4 +87,5 @@ public class enemyPatrol : MonoBehaviour
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * dir * speed,
             enemy.position.y, enemy.position.z);
     }
+
 }

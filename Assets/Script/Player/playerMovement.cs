@@ -45,7 +45,6 @@ public class playerMovement : MonoBehaviour
     {
         MovementState state;
 
-
         if (dirX > 0f)
         {
             state = MovementState.walk;

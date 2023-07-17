@@ -28,8 +28,8 @@ public class playerLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Slime"))
         {
-            Hurt(1);
-            
+            Debug.Log(gameObject.GetComponent<enemyAttack>().damage);
+            Hurt(gameObject.GetComponent<enemyAttack>().damage);
         }
     }
 
