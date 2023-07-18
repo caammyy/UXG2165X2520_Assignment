@@ -25,7 +25,6 @@ public class playerTutorial : MonoBehaviour
             tutorial1();
             if (left && right)
             {
-                Debug.Log("both");
                 ani.SetBool("tutorial1", false);
                 tutorials[0] = false;
             }
@@ -45,13 +44,10 @@ public class playerTutorial : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("left");
             left = true;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.Log("right");
-
             right = true;
         }
     }
@@ -71,7 +67,6 @@ public class playerTutorial : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("jump");
             jump = true;
         }
     }

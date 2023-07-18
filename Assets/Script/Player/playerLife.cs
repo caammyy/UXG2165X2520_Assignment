@@ -12,6 +12,7 @@ public class playerLife : MonoBehaviour
     public float currentHealth { get; private set; }
 
     [SerializeField] playerTutorial playerTut;
+    [SerializeField] endDoor endDoor;
      
     private void Awake()
     {
@@ -28,7 +29,6 @@ public class playerLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Slime"))
         {
-            Debug.Log(gameObject.GetComponent<enemyAttack>().damage);
             Hurt(gameObject.GetComponent<enemyAttack>().damage);
         }
     }
@@ -39,6 +39,10 @@ public class playerLife : MonoBehaviour
         {
             playerTut.InitializeNextTutorial();
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("EndDoor"))
+        {
+            endDoor.NextLevel();
         }
     }
     public void Hurt(float dmg)
