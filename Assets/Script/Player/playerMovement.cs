@@ -10,6 +10,10 @@ public class playerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator ani;
 
+    private GameObject attackPoint;
+    private Vector3 left;
+    private Vector3 right;
+
     [SerializeField] private LayerMask jumpGround;
     
     private float dirX = 0f;
@@ -25,6 +29,10 @@ public class playerMovement : MonoBehaviour
         boxCol = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
+        attackPoint = GameObject.Find("/Player/attackPoint");
+        right = attackPoint.transform.localPosition;
+        left = new Vector3(-attackPoint.transform.localPosition.x, attackPoint.transform.localPosition.y);
+
         sprite.flipX = true;
     }
 
@@ -49,11 +57,13 @@ public class playerMovement : MonoBehaviour
         {
             state = MovementState.walk;
             sprite.flipX = true;
+            attackPoint.transform.localPosition = right;
         }
         else if (dirX < 0f)
         {
             state = MovementState.walk;
             sprite.flipX = false;
+            attackPoint.transform.localPosition = left;
         }
         else
         {

@@ -5,8 +5,8 @@ using UnityEngine;
 public class enemyPatrol : MonoBehaviour
 {
     [Header("Patrol Points")]
-    private Transform leftEdge;
-    private Transform rightEdge;
+    public Transform leftEdge;
+    public Transform rightEdge;
 
     [Header("Enemy")]
     public Transform enemy;
@@ -27,17 +27,6 @@ public class enemyPatrol : MonoBehaviour
     {
         iniScale = enemy.localScale;
         ani = enemy.GetComponent<Animator>();
-        foreach (var trans in FindObjectsOfType<Transform>())
-        {
-            if (trans.name == "LeftEdge")
-            {
-                leftEdge = trans;
-            }
-            else if (trans.name == "RightEdge")
-            {
-                rightEdge = trans;
-            }
-        }
     }
 
     private void Update()
@@ -87,5 +76,22 @@ public class enemyPatrol : MonoBehaviour
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * dir * speed,
             enemy.position.y, enemy.position.z);
     }
-
+    //public Transform ReturnLeftEdge()
+    //{
+    //    foreach (var trans in FindObjectsOfType<Transform>())
+    //    {
+    //        if (trans.name == "LeftEdge")
+    //            leftEdge = trans;
+    //    }
+    //    return leftEdge;
+    //}
+    //public Transform ReturnRightEdge()
+    //{
+    //    foreach (var trans in FindObjectsOfType<Transform>())
+    //    {
+    //        if (trans.name == "RightEdge")
+    //            rightEdge = trans;
+    //    }
+    //    return rightEdge;
+    //}
 }

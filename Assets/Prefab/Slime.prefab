@@ -203,6 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e04fc110de55a4381576dd56d0b79f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftEdge: {fileID: 0}
+  rightEdge: {fileID: 0}
   enemy: {fileID: 426681683342041451}
   speed: 1
   idleDuration: 1
