@@ -31,6 +31,9 @@ public class playerLife : MonoBehaviour
         {
             Hurt(gameObject.GetComponent<enemyAttack>().damage);
         }
+        else if (collision.gameObject.CompareTag("Wall")){
+
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

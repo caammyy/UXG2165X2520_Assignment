@@ -8,6 +8,7 @@ TagManager:
   - Slime
   - Trigger
   - EndDoor
+  - Wall
   layers:
   - Default
   - TransparentFX
