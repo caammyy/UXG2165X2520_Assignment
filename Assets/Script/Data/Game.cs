@@ -6,21 +6,21 @@ public static class Game
 { 
     
     //characters
-    private static List<Character> characterList;
+    private static List<Characters> characterList;
 
-    public static List<Character> GetCharacterList()
+    public static List<Characters> GetCharacterList()
     {
         return characterList;
     }
 
-    public static void SetCharacterList(List<Character> aList)
+    public static void SetCharacterList(List<Characters> aList)
     {
         characterList = aList;
     }
 
-    public static Character GetCharacterByCharacterID(string aCharacterID)
+    public static Characters GetCharacterByCharacterID(string aCharacterID)
     {
-        foreach (Character a in characterList)
+        foreach (Characters a in characterList)
         {
             if (a.characterID == aCharacterID) return a;
         }
