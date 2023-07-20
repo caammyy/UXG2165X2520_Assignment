@@ -38,7 +38,6 @@ public class playerLife : MonoBehaviour
         if (collision.gameObject.CompareTag("Trigger"))
         {
             playerTut.InitializeNextTutorial();
-            Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("EndDoor"))
         {

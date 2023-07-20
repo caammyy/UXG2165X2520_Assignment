@@ -40,10 +40,9 @@ public class enemyLife : MonoBehaviour
         //disable
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-        
     }
     private void Deactivate()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
