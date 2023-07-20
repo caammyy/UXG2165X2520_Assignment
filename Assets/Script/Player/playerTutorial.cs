@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class playerTutorial : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class playerTutorial : MonoBehaviour
     bool left = false;
     bool right = false;
     bool jump = false;
+    [SerializeField] private TMP_Text defaultText;
 
     // Start is called before the first frame update
     void Start()
@@ -69,5 +71,13 @@ public class playerTutorial : MonoBehaviour
         {
             jump = true;
         }
+    }
+
+    public IEnumerator defText(string message, float waitTime)
+    {
+        defaultText.text = message;
+        defaultText.enabled = true;
+        yield return new WaitForSeconds(waitTime);
+        defaultText.enabled = false;
     }
 }

@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 426681682413893274}
   slimeHealth: 10
+  death: 0
 --- !u!114 &426681682413893268
 MonoBehaviour:
   m_ObjectHideFlags: 0

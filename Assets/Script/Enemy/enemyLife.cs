@@ -9,11 +9,14 @@ public class enemyLife : MonoBehaviour
     public int slimeHealth = 10;
     int currentHealth;
 
+    public bool death;
+
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = slimeHealth;
+        death = false;
     }
 
     public void TakeDamage(int damage)
@@ -24,6 +27,7 @@ public class enemyLife : MonoBehaviour
 
         if(currentHealth <= 0)
         {
+            death = true;
             Die();
         }
     }

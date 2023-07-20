@@ -14,6 +14,13 @@ public class playerAttack : MonoBehaviour
     public float attackRate = 2f;
     float nextAttackTime = 0f;
 
+    private int noOfEnemiesKilled = 0;
+    private int currentStageEnemies = 3;
+
+    public int noOfStagesCompleted = 0;
+
+    private GameObject wall;
+
     // Update is called once per frame
     void Update()
     {
@@ -38,7 +45,29 @@ public class playerAttack : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<enemyLife>().TakeDamage(attackDamage);
+            if (enemy.GetComponent<enemyLife>().death)
+            {
+                noOfEnemiesKilled += 1;
+                currentStageEnemies -= 1;
+                foreach (var gObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
+                {
+                    string wallname = "Wall_" + noOfStagesCompleted;
+                    if (gObj.name.Contains(wallname))
+                    {
+
+                        wall = gObj;
+                    }
+                }
+                if (currentStageEnemies == 0)
+                {
+                    Debug.Log(wall);
+                    wall.SetActive(false);
+                    noOfStagesCompleted += 1;
+                    currentStageEnemies = 3;
+                }
+            }
         }
+        
     }
     void OnDrawGizmosSelected()
     {
