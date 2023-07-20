@@ -6,19 +6,22 @@ using TMPro;
 
 public class DialogueAttempt : MonoBehaviour
 {
-    //GameObject dialoguebox;
+    public Image leftImage;
+    public Image rightImage;
+
     public TextMeshProUGUI Testname;
     public GameObject dialogueBox;
     public TextMeshProUGUI DialogueText;
-    public Image leftImage;
-    public Image rightImage;
+
+    public TextMeshProUGUI characterNameSelect;
     public GameObject selectionBox;
     public Button select1button;
     public Button select2button;
     public TextMeshProUGUI select1text;
     public TextMeshProUGUI select2text;
+
     TypewriterEffect typewritereffect;
-    bool waitforinput = true;
+    //bool waitforinput = true;
 
     //default starting cutscene
     int currentCutsceneID = 101;
@@ -51,6 +54,7 @@ public class DialogueAttempt : MonoBehaviour
     {
         image.gameObject.SetActive(true);
     }
+
 
     //selection box
     public void ShowBox(GameObject gameobject)
@@ -125,11 +129,17 @@ public class DialogueAttempt : MonoBehaviour
                         HideBox(dialogueBox);
                         ShowBox(selectionBox);
 
+                        HideImage(rightImage);
+                        ShowImage(leftImage);
+                        characterNameSelect.text = d.leftSpeaker;
+
                         select1text.text = choices[0];
                         select1button.GetComponent<ButtonDestination>().destination = choices[1];
 
                         select2text.text = choices[2];
                         select2button.GetComponent<ButtonDestination>().destination = choices[3];
+
+                        //this.GetComponent<SpriteRenderer>().sprite = AssetManager.LoadSprite(Game.GetImage())
 
                         return; //ends the code so that it doesn't break :)
                     }
@@ -145,6 +155,10 @@ public class DialogueAttempt : MonoBehaviour
                             HideImage(rightImage);
                             ShowImage(leftImage);
                             Testname.text = d.leftSpeaker;
+                            AssetManager.LoadSprite(d.leftImage, (Sprite s) =>
+                            {
+                                leftImage.GetComponent<Image>().sprite = s;
+                            });
                         }
 
                         if (d.currentSpeaker == "Right")
@@ -152,6 +166,10 @@ public class DialogueAttempt : MonoBehaviour
                             HideImage(leftImage);
                             ShowImage(rightImage);
                             Testname.text = d.rightSpeaker;
+                            AssetManager.LoadSprite(d.rightImage, (Sprite s) =>
+                            {
+                                rightImage.GetComponent<Image>().sprite = s;
+                            });
                         }
 
                         DialogueText.text = d.dialogue;

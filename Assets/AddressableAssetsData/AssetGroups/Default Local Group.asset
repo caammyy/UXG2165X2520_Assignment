@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6d98bd29c5733de418e475608cbddc75
+  m_SerializeEntries:
+  - m_GUID: 5f829566d01cabf49b5f0ca12e66cc14
+    m_Address: Assets/Script/Data/jsonData2.txt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 84cb518fe75e5044cbce8e81de5a8c79
+    m_Address: Assets/Art/Character (RedHood)
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d1b5d828878a4eb489edfb54adcd49a1
+    m_Address: Assets/Script/Data/Images/girl.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 82d218174bf0b064caf8f53ac3845a38
+    m_Address: Assets/Script/Data/Images/entity.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 790e9199e6e487c40990b0a1910c969a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f1ef12e58274c4040872a777f5f45b55, type: 2}
+    - {fileID: 11400000, guid: 492a36f225d65ef4eb5bacdd584d5ab9, type: 2}

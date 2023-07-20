@@ -6,10 +6,12 @@ using UnityEngine;
 public class RefSpawn
 {
     public string spawnID;
-    public string spawnName;
     public string mobID;
     public int mobHp;
     public int mobXPDrop;
     public string weaponID;
     public string mobBehaviour;
+    public float spawnPatrol;
+    public float spawnPatrolLeft;
+    public float spawnPatrolRight;
 }

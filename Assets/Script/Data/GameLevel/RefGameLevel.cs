@@ -7,4 +7,6 @@ public class RefGameLevel
 {
     public int gameLevelID;
     public int cutsceneSetID;
+    public float gameSpawnPoint;
+    public float gameEndPoint;
 }
