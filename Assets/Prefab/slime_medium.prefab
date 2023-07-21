@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 426681682413893268}
   - component: {fileID: 426681682413893278}
   m_Layer: 10
-  m_Name: Slime
+  m_Name: slime_medium
   m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 426681682413893274}
-  slimeHealth: 10
+  slimeHealth: 15
   death: 0
 --- !u!114 &426681682413893268
 MonoBehaviour:

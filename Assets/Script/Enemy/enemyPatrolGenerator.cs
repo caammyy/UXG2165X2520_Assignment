@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class enemyPatrolGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPatrols;
+    private GameObject enemyPatrols;
     private GameObject es;
     private GameObject left;
     private GameObject right;
+
     private List<Spawn> spawnPoints;
     private List<Spawn> currentLevelSpawnPoints;
 
     private int currentLevel = 0;
 
-    [SerializeField] private GameObject walls;
+    private GameObject walls;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +26,13 @@ public class enemyPatrolGenerator : MonoBehaviour
         spawnWalls();
     }
 
+
     void spawnCurrentLevel()
     {
         for (int i = 0; i < spawnPoints.Count; i++)
         {
             if (spawnPoints[i].spawnID.Contains(currentLevel.ToString()))
             {
-                Debug.Log(spawnPoints[i].spawnID);
                 currentLevelSpawnPoints.Add(spawnPoints[i]);
             }
         }
@@ -39,33 +40,44 @@ public class enemyPatrolGenerator : MonoBehaviour
 
     void spawnEnemyPatrolAreas()
     {
-        for (int i = 0; i < currentLevelSpawnPoints.Count; i++)
+        AssetManager.LoadPrefabs("EnemyPatrol", (GameObject s) =>
         {
-            transform.position = new Vector3(currentLevelSpawnPoints[i].spawnPatrolX, currentLevelSpawnPoints[i].spawnPatrolY);
-            enemyPatrols.name = "EnemyPatrol" + i;
+            for (int i = 0; i < currentLevelSpawnPoints.Count; i++)
+            {
+                Debug.Log(i);
+                transform.position = new Vector3(currentLevelSpawnPoints[i].spawnPatrolX, currentLevelSpawnPoints[i].spawnPatrolY);
 
-            Instantiate(enemyPatrols, transform.position, Quaternion.identity);
+                enemyPatrols = s;
+                enemyPatrols.name = "EnemyPatrol" + i;
+                Instantiate(enemyPatrols, transform.position, Quaternion.identity);
 
+                left = GameObject.Find("/" + enemyPatrols.name + "(Clone)/LeftEdge");
+                right = GameObject.Find("/" + enemyPatrols.name + "(Clone)/RightEdge");
+                es = GameObject.Find("/" + enemyPatrols.name + "(Clone)/EnemySpawn");
+                Debug.Log(left.name);
 
-            left = GameObject.Find("/" + enemyPatrols.name + "(Clone)/LeftEdge");
-            right = GameObject.Find("/" + enemyPatrols.name + "(Clone)/RightEdge");
-            es = GameObject.Find("/" + enemyPatrols.name + "(Clone)/EnemySpawn");
-            es.GetComponent<enemySpawn>().patrolcount = i;
+                es.GetComponent<enemySpawn>().patrolcount = i;
 
-            left.transform.localPosition = new Vector3(-currentLevelSpawnPoints[i].spawnPatrolEdges, 0);
-            right.transform.localPosition = new Vector3(currentLevelSpawnPoints[i].spawnPatrolEdges, 0);
-
-        }
+                left.transform.localPosition = new Vector3(-currentLevelSpawnPoints[i].spawnPatrolEdges, 0);
+                right.transform.localPosition = new Vector3(currentLevelSpawnPoints[i].spawnPatrolEdges, 0);
+            }
+        });  
     }
 
     void spawnWalls()
     {
-        for (int i = 0; i < currentLevelSpawnPoints.Count; i++)
+        AssetManager.LoadPrefabs("Wall", (GameObject s) =>
         {
-            transform.position = new Vector3(currentLevelSpawnPoints[i].spawnWallX, currentLevelSpawnPoints[i].spawnWallY);
-            walls.name = "Wall_" + i;
+            for (int i = 0; i < currentLevelSpawnPoints.Count; i++)
+            {
+                transform.position = new Vector3(currentLevelSpawnPoints[i].spawnWallX, currentLevelSpawnPoints[i].spawnWallY);
+                walls = s;
+                walls.name = "Wall_" + i;
 
-            Instantiate(walls, transform.position, Quaternion.identity);
-        }
+                Instantiate(walls, transform.position, Quaternion.identity);
+            }
+        });
     }
+
+
 }

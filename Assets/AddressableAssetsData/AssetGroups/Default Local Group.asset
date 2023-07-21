@@ -33,6 +33,10 @@ MonoBehaviour:
     m_Address: Assets/Script/Data/Images/entity.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: e9c608465cafbdc479d5b2391a2f2010
+    m_Address: Assets/Prefab/slime_easy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 790e9199e6e487c40990b0a1910c969a, type: 2}
   m_SchemaSet:

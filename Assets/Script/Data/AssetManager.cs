@@ -6,6 +6,7 @@ using UnityEngine.AddressableAssets;
 public static class AssetManager
 {
     private static string girlImagePath = "Assets/Script/Data/Images/{0}";
+    private static string prefabPath = "Assets/Prefab/{0}.prefab";
 
     public static void LoadSprite(string spriteName, System.Action<Sprite> onLoaded)
     {
@@ -14,5 +15,12 @@ public static class AssetManager
         {
             onLoaded?.Invoke(loadedSprite.Result);
         };
+    }
+    public static void LoadPrefabs(string gameObjectName, System.Action<GameObject> onLoaded)
+    {
+        Addressables.LoadAssetAsync<GameObject>(string.Format(prefabPath, gameObjectName)).Completed += (loadedGameObject) =>
+        {
+            onLoaded?.Invoke(loadedGameObject.Result);
+        };  
     }
 }

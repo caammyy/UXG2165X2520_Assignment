@@ -76,22 +76,4 @@ public class enemyPatrol : MonoBehaviour
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * dir * speed,
             enemy.position.y, enemy.position.z);
     }
-    //public Transform ReturnLeftEdge()
-    //{
-    //    foreach (var trans in FindObjectsOfType<Transform>())
-    //    {
-    //        if (trans.name == "LeftEdge")
-    //            leftEdge = trans;
-    //    }
-    //    return leftEdge;
-    //}
-    //public Transform ReturnRightEdge()
-    //{
-    //    foreach (var trans in FindObjectsOfType<Transform>())
-    //    {
-    //        if (trans.name == "RightEdge")
-    //            rightEdge = trans;
-    //    }
-    //    return rightEdge;
-    //}
 }
