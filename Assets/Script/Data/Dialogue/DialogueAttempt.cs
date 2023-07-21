@@ -8,7 +8,7 @@ public class DialogueAttempt : MonoBehaviour
 {
     public Image leftImage;
     public Image rightImage;
-
+    
     public TextMeshProUGUI Testname;
     public GameObject dialogueBox;
     public TextMeshProUGUI DialogueText;
@@ -19,7 +19,7 @@ public class DialogueAttempt : MonoBehaviour
     public Button select2button;
     public TextMeshProUGUI select1text;
     public TextMeshProUGUI select2text;
-
+    
     TypewriterEffect typewritereffect;
     //bool waitforinput = true;
 
@@ -29,9 +29,10 @@ public class DialogueAttempt : MonoBehaviour
     bool cutsceneOver = true;
     List<Dialogue> currentCutscene;
 
+
     void Start()
     {
-
+        
     }
     
     private void Awake()
@@ -39,7 +40,7 @@ public class DialogueAttempt : MonoBehaviour
         HideBox(selectionBox);
         HideImage(leftImage);
         HideImage(rightImage);
-        
+
         string test = "What do you mean?#101004@Heaven? Am I dead?#101005";
         SplitStringToArray(test);
     }
@@ -75,7 +76,7 @@ public class DialogueAttempt : MonoBehaviour
         {
             Debug.Log(item);
         }
-
+ 
         return s;
         //s[0] = text1
         //s[1] = selected cutsceneid
@@ -87,8 +88,17 @@ public class DialogueAttempt : MonoBehaviour
         {
             ReadCutscene(nextScene);
         }
-    }
+        TestForeach(); //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+    }
+    public void TestForeach()
+    {
+        List<Spawn> Test3 = Game.GetSpawnList();
+        foreach (Spawn I in Test3)
+        {
+            Debug.Log("Testing3 = " + I.spawnID);
+        }
+    }
     public void CutSceneSet()
     {
         if (cutsceneOver == true)
