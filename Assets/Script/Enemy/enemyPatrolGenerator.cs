@@ -8,28 +8,41 @@ public class enemyPatrolGenerator : MonoBehaviour
     private GameObject es;
     private GameObject left;
     private GameObject right;
-    private float[][] spawnPoints;
+    private List<Spawn> spawnPoints;
+    private List<Spawn> currentLevelSpawnPoints;
+
+    private int currentLevel = 0;
 
     [SerializeField] private GameObject walls;
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnPoints = new float[][]
-        {
-            new float[] {33.0f, 0f, 4.0f, 40.35f, 1.95f},
-            new float[] {51.0f, 0f, 6.0f, 59.35f, 0.95f},
-            new float[] {65.5f, 0f, 4.0f, 75.35f, 3.95f}
-        };
+        
+        spawnPoints = Game.GetSpawnList();
+        spawnCurrentLevel();
         spawnEnemyPatrolAreas();
         spawnWalls();
     }
 
+    void spawnCurrentLevel()
+    {
+        Debug.Log(spawnPoints);
+        for (int i = 0; i < spawnPoints.Count; i++)
+        {
+            if (spawnPoints[i].spawnID.Contains(currentLevel.ToString()))
+            {
+                currentLevelSpawnPoints.Add(spawnPoints[i]);
+            }
+        }
+    }
+
     void spawnEnemyPatrolAreas()
     {
-        for (int i = 0; i < spawnPoints.Length; i++)
+        for (int i = 0; i < currentLevelSpawnPoints.Count; i++)
         {
-            transform.position = new Vector3(spawnPoints[i][0], spawnPoints[i][1]);
+            transform.position = new Vector3(currentLevelSpawnPoints[i].spawnPatrolX, currentLevelSpawnPoints[i].spawnPatrolY);
+            
 
             enemyPatrols.name = "EnemyPatrol" + i;
 
@@ -41,17 +54,17 @@ public class enemyPatrolGenerator : MonoBehaviour
             es = GameObject.Find("/" + enemyPatrols.name + "(Clone)/EnemySpawn");
             es.GetComponent<enemySpawn>().patrolcount = i;
 
-            left.transform.localPosition = new Vector3(-spawnPoints[i][2], 0);
-            right.transform.localPosition = new Vector3(spawnPoints[i][2], 0);
+            left.transform.localPosition = new Vector3(-currentLevelSpawnPoints[i].spawnPatrolEdges, 0);
+            right.transform.localPosition = new Vector3(currentLevelSpawnPoints[i].spawnPatrolEdges, 0);
 
         }
     }
 
     void spawnWalls()
     {
-        for (int i = 0; i < spawnPoints.Length; i++)
+        for (int i = 0; i < currentLevelSpawnPoints.Count; i++)
         {
-            transform.position = new Vector3(spawnPoints[i][3], spawnPoints[i][4]);
+            transform.position = new Vector3(currentLevelSpawnPoints[i].spawnWallX, currentLevelSpawnPoints[i].spawnWallY);
             walls.name = "Wall_" + i;
 
             Instantiate(walls, transform.position, Quaternion.identity);

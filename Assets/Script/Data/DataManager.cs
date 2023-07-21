@@ -11,7 +11,7 @@ public class DataManager : MonoBehaviour
 {
     void Start()
     {
-        //LoadRefData();
+        LoadRefData();
     }
 
     public T ReadData<T>(string filepath)
@@ -24,7 +24,7 @@ public class DataManager : MonoBehaviour
 
     public void LoadRefData()
     {
-        string filePath = Path.Combine(Application.dataPath, "Script/Data/jsonData2.txt");
+        string filePath = Path.Combine(Application.dataPath, "Assets/Script/Data/jsonData2.txt");
         //persistent data path is for when you want to save the game data(?), data path is for the data alr inside unity
 
         //string dataString = File.ReadAllText(filePath);
@@ -63,7 +63,7 @@ public class DataManager : MonoBehaviour
         List<Spawn> spawnList = new List<Spawn>();
         foreach (RefSpawn refspawn in dataScript.Spawn)
         {
-            Spawn spawn = new Spawn(refspawn.spawnID, refspawn.mobID, refspawn.mobHp, refspawn.mobXPDrop, refspawn.weaponID, refspawn.mobBehaviour, refspawn.spawnPatrol, refspawn.spawnPatrolLeft, refspawn.spawnPatrolRight);
+            Spawn spawn = new Spawn(refspawn.spawnID, refspawn.mobID, refspawn.mobHp, refspawn.mobXPDrop, refspawn.weaponID, refspawn.mobBehaviour, refspawn.spawnPatrolX, refspawn.spawnPatrolY, refspawn.spawnPatrolEdges, refspawn.spawnWallX, refspawn.spawnWallY);
             spawnList.Add(spawn);
         }
         Game.SetSpawnList(spawnList);

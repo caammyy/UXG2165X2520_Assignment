@@ -11,7 +11,9 @@ public class RefSpawn
     public int mobXPDrop;
     public string weaponID;
     public string mobBehaviour;
-    public float spawnPatrol;
-    public float spawnPatrolLeft;
-    public float spawnPatrolRight;
+    public float spawnPatrolX;
+    public float spawnPatrolY;
+    public float spawnPatrolEdges;
+    public float spawnWallX;
+    public float spawnWallY;
 }
