@@ -75,11 +75,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718b8a6217e129749815f44f9d060a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 426681682413893271, guid: e9c608465cafbdc479d5b2391a2f2010, type: 3}
+  enemyID: 
+  weaponID: 
+  enemyHealth: 0
   patrolcount: 0
   minSpawnTime: 4
   maxSpawnTime: 8
-  noOfEnemies: 3
+  noOfEnemies: 0
 --- !u!1 &6322339719592302551
 GameObject:
   m_ObjectHideFlags: 0

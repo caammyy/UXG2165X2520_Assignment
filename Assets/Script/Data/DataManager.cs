@@ -63,7 +63,7 @@ public class DataManager : MonoBehaviour
         List<Spawn> spawnList = new List<Spawn>();
         foreach (RefSpawn refspawn in dataScript.Spawn)
         {
-            Spawn spawn = new Spawn(refspawn.spawnID, refspawn.mobID, refspawn.mobHp, refspawn.mobXPDrop, refspawn.weaponID, refspawn.mobBehaviour, refspawn.spawnPatrolX, refspawn.spawnPatrolY, refspawn.spawnPatrolEdges, refspawn.spawnWallX, refspawn.spawnWallY);
+            Spawn spawn = new Spawn(refspawn.spawnID, refspawn.mobID, refspawn.mobHp, refspawn.mobXPDrop, refspawn.weaponID, refspawn.mobBehaviour, refspawn.spawnPatrolX, refspawn.spawnPatrolY, refspawn.spawnPatrolEdges, refspawn.spawnWallX, refspawn.spawnWallY, refspawn.spawnFrequency);
             spawnList.Add(spawn);
         }
         Game.SetSpawnList(spawnList);

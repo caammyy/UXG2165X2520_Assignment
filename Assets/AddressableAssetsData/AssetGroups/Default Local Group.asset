@@ -33,6 +33,18 @@ MonoBehaviour:
     m_Address: Assets/Prefab/slime_easy.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 9aff46988cb36834bb8a63e3bd3f49ba
+    m_Address: Assets/Prefab/slime_medium.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5118be0239205c443b56f936fd74b949
+    m_Address: Assets/Prefab/EnemyPatrol.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 89de9e60ae2eee54b96fb006d762e8c2
+    m_Address: Assets/Prefab/Wall.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 790e9199e6e487c40990b0a1910c969a, type: 2}
   m_SchemaSet:

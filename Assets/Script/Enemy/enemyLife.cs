@@ -6,7 +6,7 @@ public class enemyLife : MonoBehaviour
 {
     public Animator anim;
 
-    public int slimeHealth = 10;
+    public int iniHealth;
     int currentHealth;
 
     public bool death;
@@ -15,7 +15,7 @@ public class enemyLife : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = slimeHealth;
+        currentHealth = iniHealth;
         death = false;
     }
 
@@ -40,9 +40,5 @@ public class enemyLife : MonoBehaviour
         //disable
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-    }
-    private void Deactivate()
-    {
-        Destroy(gameObject);
     }
 }

@@ -44,7 +44,6 @@ public class enemyPatrolGenerator : MonoBehaviour
         {
             for (int i = 0; i < currentLevelSpawnPoints.Count; i++)
             {
-                Debug.Log(i);
                 transform.position = new Vector3(currentLevelSpawnPoints[i].spawnPatrolX, currentLevelSpawnPoints[i].spawnPatrolY);
 
                 enemyPatrols = s;
@@ -54,9 +53,13 @@ public class enemyPatrolGenerator : MonoBehaviour
                 left = GameObject.Find("/" + enemyPatrols.name + "(Clone)/LeftEdge");
                 right = GameObject.Find("/" + enemyPatrols.name + "(Clone)/RightEdge");
                 es = GameObject.Find("/" + enemyPatrols.name + "(Clone)/EnemySpawn");
-                Debug.Log(left.name);
 
                 es.GetComponent<enemySpawn>().patrolcount = i;
+
+                es.GetComponent<enemySpawn>().enemyID = currentLevelSpawnPoints[i].mobID;
+                es.GetComponent<enemySpawn>().weaponID = currentLevelSpawnPoints[i].weaponID;
+                es.GetComponent<enemySpawn>().enemyHealth = currentLevelSpawnPoints[i].mobHp;
+                es.GetComponent<enemySpawn>().noOfEnemies = currentLevelSpawnPoints[i].spawnFrequency;
 
                 left.transform.localPosition = new Vector3(-currentLevelSpawnPoints[i].spawnPatrolEdges, 0);
                 right.transform.localPosition = new Vector3(currentLevelSpawnPoints[i].spawnPatrolEdges, 0);

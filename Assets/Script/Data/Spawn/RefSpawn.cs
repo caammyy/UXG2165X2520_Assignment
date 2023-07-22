@@ -16,4 +16,5 @@ public class RefSpawn
     public float spawnPatrolEdges;
     public float spawnWallX;
     public float spawnWallY;
+    public int spawnFrequency;
 }

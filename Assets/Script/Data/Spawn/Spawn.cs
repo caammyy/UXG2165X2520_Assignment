@@ -15,10 +15,11 @@ public class Spawn
     public float spawnPatrolEdges { get; }
     public float spawnWallX { get; }
     public float spawnWallY { get; }
+    public int spawnFrequency { get; }
 
     public Spawn(string spawnID, string mobID, int mobHp, int mobXPDrop, string weaponID,
         string mobBehaviour, float spawnPatrolX, float spawnPatrolY, float spawnPatrolEdges,
-        float spawnWallX, float spawnWallY)
+        float spawnWallX, float spawnWallY, int spawnFrequency)
     {
         this.spawnID = spawnID;
         this.mobID = mobID;
@@ -31,5 +32,6 @@ public class Spawn
         this.spawnPatrolEdges = spawnPatrolEdges;
         this.spawnWallX = spawnWallX;
         this.spawnWallY = spawnWallY;
+        this.spawnFrequency = spawnFrequency;
     }
 }
