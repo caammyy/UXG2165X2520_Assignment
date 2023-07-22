@@ -13,6 +13,8 @@ public class RefDialogue
     public string rightSpeaker;
     public string leftImage;
     public string rightImage;
+    public string leftEmotion;
+    public string rightEmotion;
     public string dialogue;
     public string choices;
 }

@@ -8,7 +8,13 @@ public class DialogueAttempt : MonoBehaviour
 {
     public Image leftImage;
     public Image rightImage;
-    
+
+    public Image leftEmotion;
+    public Image rightEmotion;
+
+    public Image Space;
+    public TextMeshProUGUI SelectInstructions;
+
     public TextMeshProUGUI Testname;
     public GameObject dialogueBox;
     public TextMeshProUGUI DialogueText;
@@ -40,9 +46,12 @@ public class DialogueAttempt : MonoBehaviour
         HideBox(selectionBox);
         HideImage(leftImage);
         HideImage(rightImage);
+        HideImage(leftEmotion);
+        HideImage(rightEmotion);
+        SelectInstructions.gameObject.SetActive(false);
 
         string test = "What do you mean?#101004@Heaven? Am I dead?#101005";
-        SplitStringToArray(test);
+        SplitStringToList(test);
     }
 
     //image
@@ -69,7 +78,7 @@ public class DialogueAttempt : MonoBehaviour
     }
     
     //split string method
-    public List<string> SplitStringToArray(string strtosplit)
+    public List<string> SplitStringToList(string strtosplit)
     {
         List<string> s = new List<string>(strtosplit.Split(new char[] { '#', '@' }));
         foreach (string item in s)
@@ -84,21 +93,12 @@ public class DialogueAttempt : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ReadCutscene(nextScene);
         }
-        TestForeach(); //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    }
 
-    }
-    public void TestForeach()
-    {
-        List<Spawn> Test3 = Game.GetSpawnList();
-        foreach (Spawn I in Test3)
-        {
-            Debug.Log("Testing3 = " + I.spawnWallX);
-        }
-    }
     public void CutSceneSet()
     {
         if (cutsceneOver == true)
@@ -130,12 +130,16 @@ public class DialogueAttempt : MonoBehaviour
         {
             foreach (Dialogue d in currentCutscene)
             {
+                ShowImage(Space);
                 if (d.cutsceneRefID == destination)
                 {
                     //if choice show choice
                     if (d.nextcutsceneRefID == -2)
                     {
-                        List<string> choices = SplitStringToArray(d.choices);
+                        HideImage(Space);
+                        SelectInstructions.gameObject.SetActive(true);
+                        HideImage(rightEmotion);
+                        List<string> choices = SplitStringToList(d.choices);
                         HideBox(dialogueBox);
                         ShowBox(selectionBox);
 
@@ -158,10 +162,33 @@ public class DialogueAttempt : MonoBehaviour
                     {
                         HideBox(selectionBox);
                         ShowBox(dialogueBox);
+                        if (d.leftEmotion != "-1")
+                        {
+                            ShowImage(leftEmotion);
+                            AssetManager.LoadSprite(d.leftEmotion, (Sprite s) =>
+                            {
+                                leftEmotion.GetComponent<Image>().sprite = s;
+                            });
+                        }
+                        Debug.Log(d.leftEmotion);
+
+                        if (d.rightEmotion != "-1")
+                        {
+                            HideImage(leftEmotion);
+                            ShowImage(rightEmotion);
+                            AssetManager.LoadSprite(d.rightEmotion, (Sprite s) =>
+                            {
+                                rightEmotion.GetComponent<Image>().sprite = s;
+                            });
+                        }
+                        
 
                         //normal dialogue
                         if (d.currentSpeaker == "Left")
                         {
+                            SelectInstructions.gameObject.SetActive(false);
+                            HideImage(Space);
+                            HideImage(rightEmotion);
                             HideImage(rightImage);
                             ShowImage(leftImage);
                             Testname.text = d.leftSpeaker;
@@ -169,10 +196,14 @@ public class DialogueAttempt : MonoBehaviour
                             {
                                 leftImage.GetComponent<Image>().sprite = s;
                             });
+                            
                         }
 
                         if (d.currentSpeaker == "Right")
                         {
+                            SelectInstructions.gameObject.SetActive(false);
+                            HideImage(Space);
+                            HideImage(leftEmotion);
                             HideImage(leftImage);
                             ShowImage(rightImage);
                             Testname.text = d.rightSpeaker;

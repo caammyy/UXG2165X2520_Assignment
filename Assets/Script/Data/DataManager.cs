@@ -84,8 +84,8 @@ public class DataManager : MonoBehaviour
         foreach (RefDialogue refdialogue in dataScript.Dialogue)
         {
             Dialogue dialogue = new Dialogue(refdialogue.cutsceneRefID, refdialogue.nextcutsceneRefID, refdialogue.cutsceneSetID,
-                refdialogue.currentSpeaker, refdialogue.leftSpeaker, refdialogue.rightSpeaker, refdialogue.leftImage, refdialogue.rightImage, 
-                refdialogue.dialogue, refdialogue.choices);
+                refdialogue.currentSpeaker, refdialogue.leftSpeaker, refdialogue.rightSpeaker, refdialogue.leftImage, refdialogue.rightImage,
+                refdialogue.leftEmotion, refdialogue.rightEmotion, refdialogue.dialogue, refdialogue.choices);
             dialogueList.Add(dialogue);
         }
         Game.SetDialogueList(dialogueList);

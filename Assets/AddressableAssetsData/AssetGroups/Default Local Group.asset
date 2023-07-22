@@ -45,6 +45,22 @@ MonoBehaviour:
     m_Address: Assets/Prefab/Wall.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: e31fc282b2061eb4fa85d5e78fdfb33e
+    m_Address: Assets/Script/Data/Images/exclaim.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cc96653d3bf6d944fbfd07df8103b47d
+    m_Address: Assets/Script/Data/Images/happy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 05f031269599e824987f72cf3d3f1f63
+    m_Address: Assets/Script/Data/Images/question.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4ecbfb0b22d84eb42948a70e23bdcb6d
+    m_Address: Assets/Script/Data/Images/sad.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 790e9199e6e487c40990b0a1910c969a, type: 2}
   m_SchemaSet:
