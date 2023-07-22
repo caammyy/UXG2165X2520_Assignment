@@ -96,7 +96,7 @@ public class DialogueAttempt : MonoBehaviour
         List<Spawn> Test3 = Game.GetSpawnList();
         foreach (Spawn I in Test3)
         {
-            Debug.Log("Testing3 = " + I.spawnID);
+            Debug.Log("Testing3 = " + I.spawnWallX);
         }
     }
     public void CutSceneSet()

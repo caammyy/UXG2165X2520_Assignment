@@ -17,10 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6d98bd29c5733de418e475608cbddc75
   m_SerializeEntries:
-  - m_GUID: 5f829566d01cabf49b5f0ca12e66cc14
-    m_Address: Assets/Script/Data/jsonData2.txt
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 84cb518fe75e5044cbce8e81de5a8c79
     m_Address: Assets/Art/Character (RedHood)
     m_ReadOnly: 0
