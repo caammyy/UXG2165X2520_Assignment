@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemyPatrolGenerator : MonoBehaviour
 {
     private GameObject enemyPatrols;
-    private GameObject es;
+    private enemySpawn es;
     private GameObject left;
     private GameObject right;
 
@@ -52,14 +52,15 @@ public class enemyPatrolGenerator : MonoBehaviour
 
                 left = GameObject.Find("/" + enemyPatrols.name + "(Clone)/LeftEdge");
                 right = GameObject.Find("/" + enemyPatrols.name + "(Clone)/RightEdge");
-                es = GameObject.Find("/" + enemyPatrols.name + "(Clone)/EnemySpawn");
+                es = GameObject.Find("/" + enemyPatrols.name + "(Clone)/EnemySpawn").GetComponent<enemySpawn>();
 
-                es.GetComponent<enemySpawn>().patrolcount = i;
+                es.patrolcount = i;
 
-                es.GetComponent<enemySpawn>().enemyID = currentLevelSpawnPoints[i].mobID;
-                es.GetComponent<enemySpawn>().weaponID = currentLevelSpawnPoints[i].weaponID;
-                es.GetComponent<enemySpawn>().enemyHealth = currentLevelSpawnPoints[i].mobHp;
-                es.GetComponent<enemySpawn>().noOfEnemies = currentLevelSpawnPoints[i].spawnFrequency;
+                es.enemyID = currentLevelSpawnPoints[i].mobID;
+                es.weaponID = currentLevelSpawnPoints[i].weaponID;
+                es.enemyHealth = currentLevelSpawnPoints[i].mobHp;
+                es.noOfEnemies = currentLevelSpawnPoints[i].spawnFrequency;
+                es.enemyXP = currentLevelSpawnPoints[i].mobXPDrop;
 
                 left.transform.localPosition = new Vector3(-currentLevelSpawnPoints[i].spawnPatrolEdges, 0);
                 right.transform.localPosition = new Vector3(currentLevelSpawnPoints[i].spawnPatrolEdges, 0);
@@ -81,6 +82,4 @@ public class enemyPatrolGenerator : MonoBehaviour
             }
         });
     }
-
-
 }

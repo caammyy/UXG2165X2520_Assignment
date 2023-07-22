@@ -76,8 +76,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 
-  weaponID: 
   enemyHealth: 0
+  enemyXP: 0
+  weaponID: 
   patrolcount: 0
   minSpawnTime: 4
   maxSpawnTime: 8

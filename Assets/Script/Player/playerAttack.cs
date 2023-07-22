@@ -60,7 +60,6 @@ public class playerAttack : MonoBehaviour
                 }
                 if (currentStageEnemies == 0)
                 {
-                    Debug.Log(wall.name);
                     Destroy(wall.gameObject);
                     noOfStagesCompleted += 1;
                     currentStageEnemies = 3;

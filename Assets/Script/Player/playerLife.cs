@@ -8,6 +8,8 @@ public class playerLife : MonoBehaviour
     private Animator ani;
     private Rigidbody2D rb;
 
+    public int playerXP = 0;
+
     [SerializeField] private float initialHealth;
     public float currentHealth { get; private set; }
 

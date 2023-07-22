@@ -9,6 +9,8 @@ public class enemyLife : MonoBehaviour
     public int iniHealth;
     int currentHealth;
 
+    public int enemyXP;
+
     public bool death;
 
 
@@ -37,6 +39,11 @@ public class enemyLife : MonoBehaviour
         anim.SetBool("move", false);
         anim.SetBool("dead", true);
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+
+        //player xp
+        GameObject p = GameObject.Find("Player");
+        p.GetComponent<playerLife>().playerXP += enemyXP;
+
         //disable
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;

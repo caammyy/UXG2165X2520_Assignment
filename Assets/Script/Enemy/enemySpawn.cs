@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class enemySpawn : MonoBehaviour
 {
+    //enemy variables
     private GameObject enemy;
     public string enemyID;
+    public int enemyHealth;
+    private string mobType;
+    public int enemyXP;
+
+    //enemy damage variables
     public string weaponID;
     private int weaponDmg;
-    private string mobType;
-    public int enemyHealth;
 
+    //addressables
     private List<Mob> mobs;
     private List<Weapon> weapons;
 
@@ -45,6 +50,7 @@ public class enemySpawn : MonoBehaviour
                 enemy = s;
                 enemy.GetComponent<enemyAttack>().damage = weaponDmg;
                 enemy.GetComponent<enemyLife>().iniHealth = enemyHealth;
+                enemy.GetComponent<enemyLife>().enemyXP = enemyXP;
                 enemy.name = "Slime_" + patrolcount;
 
                 ep = enemy.GetComponent<enemyPatrol>();
@@ -67,7 +73,6 @@ public class enemySpawn : MonoBehaviour
         {
             if (w.weaponID == weaponID)
             {
-                Debug.Log(w.damageAmount);
                 weaponDmg = w.damageAmount;
             }
         }
