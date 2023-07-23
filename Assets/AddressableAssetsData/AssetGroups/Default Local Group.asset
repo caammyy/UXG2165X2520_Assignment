@@ -65,6 +65,18 @@ MonoBehaviour:
     m_Address: Assets/Prefab/Girl.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 54041049b79d8574cbd417208c8d0460
+    m_Address: Assets/Script/Data/Images/WeaponFloat_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6147be6168549634580626c75d7ac8e0
+    m_Address: Assets/Script/Data/Images/WeaponFloat_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2d3f10d4ac554b149becf44dbdd23ec9
+    m_Address: Assets/Prefab/Weapon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 790e9199e6e487c40990b0a1910c969a, type: 2}
   m_SchemaSet:

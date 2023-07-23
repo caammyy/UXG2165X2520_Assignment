@@ -10,7 +10,7 @@ public class DataScript
     public List<RefCharacters> Characters;
     public List<RefMob> Mob;
     public List<RefSpawn> Spawn;
-    public List<RefWeapon> Weapons;
+    public List<RefWeapon> Weapon;
     public List<RefGameLevel> GameLevel;
     public List<RefPlayerLevel> PlayerLevel;
     public List<RefPlayer> Player;

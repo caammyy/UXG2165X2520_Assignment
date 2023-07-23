@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class enemyAttack : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float range;
-    public int damage;
+    public string weaponID;
+    private List<Weapon> weapons;
+    public Weapon enemyWeapon;
+
+    public float attackCooldown;
+    public float attackRange; 
+    public float attackDamage;
+
     [SerializeField] private BoxCollider2D coll;
-    [SerializeField] private float collDistance;
+    public float collDistance;
     [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
 
@@ -20,6 +25,7 @@ public class enemyAttack : MonoBehaviour
 
     private void Awake()
     {
+        SetEnemyWeapon();
         ani = GetComponent<Animator>();
         enemyPatrol = GetComponentInParent<enemyPatrol>();
     }
@@ -43,27 +49,44 @@ public class enemyAttack : MonoBehaviour
 
     private bool PlayerSpotted()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center + transform.right * range * transform.localScale.x * collDistance,
-            new Vector3(coll.bounds.size.x * range, coll.bounds.size.y, coll.bounds.size.z), 0, Vector2.left, 0, playerLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center + transform.right * attackRange * transform.localScale.x * collDistance,
+            new Vector3(coll.bounds.size.x * attackRange, coll.bounds.size.y, coll.bounds.size.z), 0, Vector2.left, 0, playerLayer);
 
         if(hit.collider != null)
         {
             playerHealth = hit.transform.GetComponent<playerLife>();
         }
-
         return hit.collider != null;
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(coll.bounds.center + transform.right * range * transform.localScale.x * collDistance,
-            new Vector3(coll.bounds.size.x * range, coll.bounds.size.y, coll.bounds.size.z)); 
+        Gizmos.DrawWireCube(coll.bounds.center + transform.right * attackRange * transform.localScale.x * collDistance,
+            new Vector3(coll.bounds.size.x * attackRange, coll.bounds.size.y, coll.bounds.size.z)); 
     }
     private void DamagePlayer()
     {
         if (PlayerSpotted())
         {
-            playerHealth.Hurt(damage);
+            playerHealth.Hurt(attackDamage);
+        }
+    }
+    void SetEnemyWeapon()
+    {
+        weapons = Game.GetWeaponList();
+        foreach (Weapon w in weapons)
+        {
+            if (w.weaponID == weaponID)
+            {
+                enemyWeapon = w;
+            }
+        }
+        attackCooldown = enemyWeapon.weaponAttackRate;
+        attackDamage = enemyWeapon.weaponDamageAmount;
+        attackRange = enemyWeapon.weaponAttackRange;
+        if (enemyWeapon.weaponType == "Melee")
+        {
+            collDistance = 0.5f;
         }
     }
 }

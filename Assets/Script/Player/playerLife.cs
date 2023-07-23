@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class playerLife : MonoBehaviour
 {
@@ -15,13 +16,25 @@ public class playerLife : MonoBehaviour
     public int currentCharacterHp;
     public string currentCharacterName;
     public string currentCharacterWeaponID;
+    private List<Weapon> wList;
+    private int aniWeapon = 0;
+    public int unlockedWeapons = 0;
+
+    //analytics
+    public int currentPlayerEnemiesKilled;
+    public float currentPlayerDamageTaken;
+    public float currentPlayerShortTime;
 
     public Player currentPlayer;
+    public Player UpdatedPlayer;
+    public string currentPlayerID;
+
     public PlayerLevel currentPlayerLevel;
     public int currentLevel;
 
     public int playerXP;
-    private float playerDamage;
+    private float playerWeaponDamage;
+
     public int playerHealth;
     public float currentHealth;
 
@@ -41,6 +54,13 @@ public class playerLife : MonoBehaviour
     private void Update()
     {
         SetLevel();
+        UpdateKey();
+        UpdateWeapon();
+
+        GetComponent<playerAttack>().currentAttackDamage = playerWeaponDamage + currentPlayerLevel.levelAD;
+        playerHealth = currentCharacterHp + currentPlayerLevel.levelHP;
+
+        UpdatePlayer();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -60,9 +80,19 @@ public class playerLife : MonoBehaviour
         {
             endDoor.NextLevel();
         }
+        else if (collision.gameObject.CompareTag("Weapon"))
+        {
+            aniWeapon = Int32.Parse((collision.gameObject.GetComponent<SpriteRenderer>().sprite.name).Replace("WeaponFloat_", ""));
+            GameObject.Find("/Canvas/ItemsPanel/Slot" + (aniWeapon + 1)).SetActive(true);
+            GameObject.Find("/Canvas/ItemsPanel/Slot" + (aniWeapon + 1)).GetComponent<Image>().color = (Color)(new Color32(130, 130, 130, 255));
+            unlockedWeapons = aniWeapon;
+            UpdateWeapon();
+            Destroy(collision.gameObject);
+        }
     }
     public void Hurt(float dmg)
     {
+        currentPlayerDamageTaken += dmg;
         currentHealth = Mathf.Clamp(currentHealth - dmg, 0, playerHealth);
         //GameObject.Find("/Canvas/Healthbar").GetComponent<playerHealthbar>().playerHealth 
         ani.SetTrigger("hurt");
@@ -85,25 +115,24 @@ public class playerLife : MonoBehaviour
         List<Player> pList = Game.GetPlayerList();
         if (!PlayerPrefs.HasKey("PlayerID"))
         {
-            string newPlayerID;
             if (pList.Count > 0)
             {
                 Player lastPlayer = pList[pList.Count - 1];
-                newPlayerID = lastPlayer.playerID.Remove(0, 1);
-                if (Int32.Parse(newPlayerID) > 8)
+                currentPlayerID = lastPlayer.playerID.Remove(0, 1);
+                if (Int32.Parse(currentPlayerID) > 8)
                 {
-                    newPlayerID = "P" + Int32.Parse(newPlayerID) + 1;
+                    currentPlayerID = "P" + Int32.Parse(currentPlayerID) + 1;
                 }
                 else
                 {
-                    newPlayerID = "P0" + Int32.Parse(newPlayerID) + 1;
+                    currentPlayerID = "P0" + Int32.Parse(currentPlayerID) + 1;
                 }
             }
             else
             {
-                newPlayerID = "P01";
+                currentPlayerID = "P01";
             }
-            currentPlayer = new Player(DateTime.Now, newPlayerID, currentCharacterID, 0, 1);
+            currentPlayer = new Player(DateTime.Now, currentPlayerID, currentCharacterID, 0, 1, currentCharacterWeaponID, 0, 0, 0);
         }
         else
         {
@@ -127,12 +156,13 @@ public class playerLife : MonoBehaviour
         currentHealth = playerHealth;
 
         //set initial player damage
-        List<Weapon> wList = Game.GetWeaponList();
+        wList = Game.GetWeaponList();
         foreach (Weapon w in wList)
         {
             if (w.weaponID == currentCharacterWeaponID)
             {
-                playerDamage = currentPlayerLevel.levelAD + w.damageAmount;
+                GetComponent<playerAttack>().playerWeapon = w;
+                playerWeaponDamage = w.weaponDamageAmount;
                 break;
             }
         }
@@ -148,6 +178,7 @@ public class playerLife : MonoBehaviour
         //set initial player level
         if (playerXP == 0)
             playerXP = currentPlayer.playerXP;
+
         List<PlayerLevel> plList = Game.GetPlayerLevelList();
 
         playerUI.plList = plList;
@@ -160,7 +191,66 @@ public class playerLife : MonoBehaviour
                 break;
             }
         }
+        if (currentLevel != playerUI.currentPlayerLevel)
+        {
+            playerHealth = currentCharacterHp + currentPlayerLevel.levelHP;
+            currentHealth = playerHealth;
+        }
         playerUI.currentPlayerLevel = currentLevel;
         playerUI.currentPlayerXP = playerXP;
+    }
+
+    void UpdatePlayer()
+    {
+        
+        UpdatedPlayer = new Player(currentPlayer.playerCreation, currentPlayer.playerID, currentCharacterID, playerXP, currentLevel, currentCharacterWeaponID, currentPlayerEnemiesKilled, currentPlayerDamageTaken, currentPlayerShortTime);
+        currentPlayer = UpdatedPlayer;
+    }
+
+    void UpdateWeapon()
+    {
+        if (aniWeapon < 10)
+        {
+            currentCharacterWeaponID = "WC0";
+        }
+        currentCharacterWeaponID += (aniWeapon+1);
+
+        foreach (Weapon w in wList)
+        {
+            if (w.weaponID == currentCharacterWeaponID)
+            {
+                GetComponent<playerAttack>().playerWeapon = w;
+                playerWeaponDamage = w.weaponDamageAmount;
+                break;
+            }
+        }
+        GetComponent<playerAttack>().animatorWeapon = aniWeapon;
+    }
+    void UpdateKey()
+    {
+        for (int i = 0; i <= unlockedWeapons; i++)
+        {
+            GameObject.Find("/Canvas/ItemsPanel/Slot" + (1+i)).GetComponent<Image>().color = (Color)(new Color32(255, 255, 255, 255));
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            aniWeapon = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (unlockedWeapons >= 1)
+            {
+                aniWeapon = 1;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (unlockedWeapons >= 2)
+            {
+                aniWeapon = 2;
+            }
+        }
+        GameObject.Find("/Canvas/ItemsPanel/Slot" + (aniWeapon + 1)).GetComponent<Image>().color = (Color)(new Color32(130, 130, 130, 255));
+        UpdateWeapon();
     }
 }

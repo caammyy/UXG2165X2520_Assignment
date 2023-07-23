@@ -13,11 +13,10 @@ public class enemySpawn : MonoBehaviour
 
     //enemy damage variables
     public string weaponID;
-    private int weaponDmg;
+    private Weapon weapon;
 
     //addressables
     private List<Mob> mobs;
-    private List<Weapon> weapons;
 
     public int patrolcount;
     private enemyPatrol ep;
@@ -34,8 +33,6 @@ public class enemySpawn : MonoBehaviour
     {
 
         SetEnemy();
-
-        SetDamage();
         SetTimeTilSpawn();
     }
 
@@ -48,7 +45,9 @@ public class enemySpawn : MonoBehaviour
             AssetManager.LoadPrefabs(mobType, (GameObject s) =>
             {
                 enemy = s;
-                enemy.GetComponent<enemyAttack>().damage = weaponDmg;
+
+                
+                enemy.GetComponent<enemyAttack>().weaponID = weaponID;
                 enemy.GetComponent<enemyLife>().iniHealth = enemyHealth;
                 enemy.GetComponent<enemyLife>().enemyXP = enemyXP;
                 enemy.name = "Slime_" + patrolcount;
@@ -62,19 +61,6 @@ public class enemySpawn : MonoBehaviour
             });
             noOfEnemies -= 1;
             SetTimeTilSpawn();
-        }
-    }
-
-    void SetDamage()
-    {
-        weapons = Game.GetWeaponList();
-
-        foreach (Weapon w in weapons)
-        {
-            if (w.weaponID == weaponID)
-            {
-                weaponDmg = w.damageAmount;
-            }
         }
     }
     void SetEnemy()

@@ -9,6 +9,7 @@ TagManager:
   - Trigger
   - EndDoor
   - Wall
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - 
   - Player
-  - 
+  - Items
   - 
   - Enemies
   - Ground

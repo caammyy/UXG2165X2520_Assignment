@@ -185,11 +185,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51ed765c670454eb7227a327ab00f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponID: WM01
   attackCooldown: 2
-  range: 0.75
-  damage: 1
+  attackRange: 0
+  attackDamage: 0
   coll: {fileID: 426681682413893272}
-  collDistance: 0.5
+  collDistance: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 128

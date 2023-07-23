@@ -7,7 +7,7 @@ public class enemyLife : MonoBehaviour
     public Animator anim;
 
     public int iniHealth;
-    int currentHealth;
+    float currentHealth;
 
     public int enemyXP;
 
@@ -21,7 +21,7 @@ public class enemyLife : MonoBehaviour
         death = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         //hurt anim

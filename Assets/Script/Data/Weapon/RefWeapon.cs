@@ -7,5 +7,8 @@ public class RefWeapon
 {
     public string weaponID;
     public string weaponName;
-    public int damageAmount;
+    public float weaponDamageAmount;
+    public float weaponAttackRange;
+    public float weaponAttackRate;
+    public string weaponType;
 }

@@ -11,4 +11,8 @@ public class RefPlayer
     public string playerCharacterID;
     public int playerXP;
     public int playerLevelNo;
+    public string playerWeaponID;
+    public int playerEnemiesKilled;
+    public float playerDamageTaken;
+    public float playerShortestTimeTakenSection;
 }

@@ -30,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4435618223758901131}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -191,6 +191,11 @@ MonoBehaviour:
   currentCharacterHp: 10
   currentCharacterName: Girl
   currentCharacterWeaponID: WC01
+  unlockedWeapons: 0
+  currentPlayerEnemiesKilled: 0
+  currentPlayerDamageTaken: 0
+  currentPlayerShortTime: 0
+  currentPlayerID: 
   currentLevel: 0
   playerXP: 0
   playerHealth: 0
@@ -208,14 +213,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 4435618223758900849}
+  animatorWeapon: 0
   attackPoint: {fileID: 4435618225360253423}
-  attackRange: 0.41
+  currentAttackDamage: 0
+  currentAttackRange: 0
+  currentAttackRate: 0
+  currentWeaponType: 
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
-  attackDamage: 2
-  attackRate: 2
-  noOfStagesCompleted: 0
 --- !u!1 &4435618225360253422
 GameObject:
   m_ObjectHideFlags: 0

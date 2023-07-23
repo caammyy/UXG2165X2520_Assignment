@@ -950,6 +950,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e5a2a28ecc6f144b203d7567dc92ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: 0
+  noOfEnemies: 0
+  noOfSectionsCompleted: 0
 --- !u!4 &374933988
 Transform:
   m_ObjectHideFlags: 0

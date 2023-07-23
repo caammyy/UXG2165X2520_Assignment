@@ -5,65 +5,55 @@ using UnityEngine;
 public class playerAttack : MonoBehaviour
 {
     public Animator anim;
+    public int animatorWeapon;
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+
+    public Weapon playerWeapon;
+
+    public float currentAttackDamage; 
+    public float currentAttackRange;
+    public float currentAttackRate;
+    public string currentWeaponType;
+
     public LayerMask enemyLayer;
 
-    public int attackDamage = 2;
 
-    public float attackRate = 2f;
     float nextAttackTime = 0f;
-
-    private int noOfEnemiesKilled = 0;
-    private int currentStageEnemies = 3;
-
-    public int noOfStagesCompleted = 0;
-
-    private GameObject wall;
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time >= nextAttackTime)
+        SetPlayerWeapon(); 
+
+        if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (playerWeapon.weaponType == "Melee")
             {
-                Attack();
-                nextAttackTime = Time.time + 1f / attackRate;
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    //animation
+                    anim.SetTrigger("attack");
+                    anim.SetInteger("weapon", animatorWeapon);
+                    //MeleeAttack();
+                    nextAttackTime = Time.time + 1f / currentAttackRate;
+                }
             }
         }
         
     }
-    void Attack()
+    void MeleeAttack()
     {
-        //animation
-        anim.SetTrigger("attack");
         //detect enemies
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, currentAttackRange, enemyLayer);
         
         //damage enemies
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<enemyLife>().TakeDamage(attackDamage);
+            enemy.GetComponent<enemyLife>().TakeDamage(currentAttackDamage);
             if (enemy.GetComponent<enemyLife>().death)
             {
-                noOfEnemiesKilled += 1;
-                currentStageEnemies -= 1;
-                foreach (var gObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
-                {
-                    string wallname = "Wall_" + noOfStagesCompleted;
-                    if (gObj.name.Contains(wallname))
-                    {
-
-                        wall = gObj;
-                    }
-                }
-                if (currentStageEnemies == 0)
-                {
-                    Destroy(wall.gameObject);
-                    noOfStagesCompleted += 1;
-                    currentStageEnemies = 3;
-                }
+                GetComponent<playerLife>().currentPlayerEnemiesKilled += 1;
+                GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().noOfEnemies -= 1;
             }
         }
         
@@ -72,6 +62,13 @@ public class playerAttack : MonoBehaviour
     {
         if (attackPoint == null)
             return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, currentAttackRange);
+    }
+
+    void SetPlayerWeapon()
+    {
+        currentAttackRange = playerWeapon.weaponAttackRange;
+        currentAttackRate = playerWeapon.weaponAttackRate;
+        currentWeaponType = playerWeapon.weaponType;
     }
 }

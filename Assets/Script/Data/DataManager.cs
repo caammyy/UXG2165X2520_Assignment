@@ -70,9 +70,9 @@ public class DataManager : MonoBehaviour
 
         //weapon
         List<Weapon> weaponList = new List<Weapon>();
-        foreach (RefWeapon refweapon in dataScript.Weapons)
+        foreach (RefWeapon refweapon in dataScript.Weapon)
         {
-            Weapon weapon = new Weapon(refweapon.weaponID, refweapon.weaponName, refweapon.damageAmount);
+            Weapon weapon = new Weapon(refweapon.weaponID, refweapon.weaponName, refweapon.weaponDamageAmount, refweapon.weaponAttackRange, refweapon.weaponAttackRate, refweapon.weaponType);
             weaponList.Add(weapon);
         }
         Game.SetWeaponList(weaponList);
@@ -113,7 +113,7 @@ public class DataManager : MonoBehaviour
         List<Player> playerList = new List<Player>();
         foreach (RefPlayer refPlayer in dataScript.Player)
         {
-            Player player = new Player(refPlayer.playerCreation, refPlayer.playerID, refPlayer.playerCharacterID, refPlayer.playerXP, refPlayer.playerLevelNo);
+            Player player = new Player(refPlayer.playerCreation, refPlayer.playerID, refPlayer.playerCharacterID, refPlayer.playerXP, refPlayer.playerLevelNo, refPlayer.playerWeaponID, refPlayer.playerEnemiesKilled, refPlayer.playerDamageTaken, refPlayer.playerShortestTimeTakenSection);
             playerList.Add(player);
         }
         Game.SetPlayerList(playerList);
