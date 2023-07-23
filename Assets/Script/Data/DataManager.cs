@@ -94,7 +94,7 @@ public class DataManager : MonoBehaviour
         List<GameLevel> gamelevelList = new List<GameLevel>();
         foreach (RefGameLevel refgamelevel in dataScript.GameLevel)
         {
-            GameLevel gamelevel = new GameLevel(refgamelevel.gameLevelID, refgamelevel.cutsceneSetID, refgamelevel.gameSpawnPoint, refgamelevel.gameEndPoint);
+            GameLevel gamelevel = new GameLevel(refgamelevel.gameLevelID, refgamelevel.cutsceneSetID, refgamelevel.gameSpawnPointX, refgamelevel.gameSpawnPointY, refgamelevel.gameEndPointX, refgamelevel.gameEndPointY);
             gamelevelList.Add(gamelevel);
         }
         Game.SetGameLevelList(gamelevelList);
