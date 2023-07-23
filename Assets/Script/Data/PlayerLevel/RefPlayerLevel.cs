@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class RefPlayerLevel
 {
-    public int playerLevelID;
+    public int levelNo;
     public int levelXP;
+    public float levelAD;
+    public int levelHP;
 }

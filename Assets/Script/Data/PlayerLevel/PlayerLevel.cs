@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerLevel
 {
-    public int playerLevelID { get; }
+    public int levelNo { get; }
     public int levelXP{ get; }
+    public float levelAD { get; }
+    public int levelHP { get; }
 
-    public PlayerLevel(int playerLevelID, int levelXP)
+    public PlayerLevel(int levelNo, int levelXP, float levelAD, int levelHP)
     {
-        this.playerLevelID = playerLevelID;
+        this.levelNo = levelNo;
         this.levelXP = levelXP;
+        this.levelAD = levelAD;
+        this.levelHP = levelHP;
     }
 }

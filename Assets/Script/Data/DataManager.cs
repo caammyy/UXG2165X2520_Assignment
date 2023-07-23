@@ -42,11 +42,10 @@ public class DataManager : MonoBehaviour
         List<Characters> characterList = new List<Characters>();
         foreach (RefCharacters refcharacter in dataScript.Characters)
         {
-            Characters character = new Characters(refcharacter.characterID, refcharacter.characterName,  
-                refcharacter.characterHp, refcharacter.weaponID);
+            Characters character = new Characters(refcharacter.characterID, refcharacter.characterName, refcharacter.characterHp, refcharacter.weaponID);
             characterList.Add(character);
         }
-        Game.SetCharacterList (characterList);
+        Game.SetCharacterList(characterList);
 
 
         //mob
@@ -105,9 +104,18 @@ public class DataManager : MonoBehaviour
         List<PlayerLevel> playerlevelList = new List<PlayerLevel>();
         foreach (RefPlayerLevel refplayerlevel in dataScript.PlayerLevel)
         {
-            PlayerLevel playerlevel = new PlayerLevel(refplayerlevel.playerLevelID, refplayerlevel.levelXP);
+            PlayerLevel playerlevel = new PlayerLevel(refplayerlevel.levelNo, refplayerlevel.levelXP, refplayerlevel.levelAD, refplayerlevel.levelHP);
             playerlevelList.Add(playerlevel);
         }
         Game.SetPlayerLevelList(playerlevelList);
+
+        //player
+        List<Player> playerList = new List<Player>();
+        foreach (RefPlayer refPlayer in dataScript.Player)
+        {
+            Player player = new Player(refPlayer.playerCreation, refPlayer.playerID, refPlayer.playerCharacterID, refPlayer.playerXP, refPlayer.playerLevelNo);
+            playerList.Add(player);
+        }
+        Game.SetPlayerList(playerList);
     }
 }

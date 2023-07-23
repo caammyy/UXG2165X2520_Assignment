@@ -41,11 +41,13 @@ public class enemyLife : MonoBehaviour
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
         //player xp
-        GameObject p = GameObject.Find("Player");
+        GameObject p = GameObject.Find("/PlayerController/Player(Clone)");
         p.GetComponent<playerLife>().playerXP += enemyXP;
 
         //disable
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+
+        Destroy(this);
     }
 }

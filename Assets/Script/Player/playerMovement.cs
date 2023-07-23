@@ -29,7 +29,7 @@ public class playerMovement : MonoBehaviour
         boxCol = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
-        attackPoint = GameObject.Find("/Player/attackPoint");
+        attackPoint = GameObject.Find("/PlayerController/Player(Clone)/attackPoint");
         right = attackPoint.transform.localPosition;
         left = new Vector3(-attackPoint.transform.localPosition.x, attackPoint.transform.localPosition.y);
 

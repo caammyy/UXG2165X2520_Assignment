@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-
+    public Transform player;
     // Update is called once per frame
     private void Update()
     {
+        if (player != null)
         transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
     }
 }

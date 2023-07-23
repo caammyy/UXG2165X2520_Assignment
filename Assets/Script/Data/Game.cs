@@ -107,6 +107,17 @@ public static class Game
         playerlevelList = gList;
     }
 
+    //player
+    private static List<Player> playerList;
+    public static List<Player> GetPlayerList()
+    {
+        return playerList;
+    }
+    public static void SetPlayerList(List<Player> hList)
+    {
+        playerList = hList;
+    }
+
 
 
     //DialogueObject
