@@ -12,10 +12,9 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetCharacter();
     }
 
-    void SetCharacter()
+    public void SetCharacter()
     {
         cList = Game.GetCharacterList();
         if (!PlayerPrefs.HasKey("characterID"))

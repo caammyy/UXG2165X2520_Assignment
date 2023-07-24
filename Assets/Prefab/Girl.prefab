@@ -190,7 +190,7 @@ MonoBehaviour:
   currentCharacterID: C01
   currentCharacterHp: 10
   currentCharacterName: Girl
-  currentCharacterWeaponID: WC01
+  currentCharacterWeaponID: sword_basic
   unlockedWeapons: 0
   currentPlayerEnemiesKilled: 0
   currentPlayerDamageTaken: 0

@@ -20,9 +20,12 @@ public static class Game
 
     public static Characters GetCharacterByCharacterID(string aCharacterID)
     {
-        foreach (Characters a in characterList)
+        if (characterList != null)
         {
-            if (a.characterID == aCharacterID) return a;
+            foreach (Characters a in characterList)
+            {
+                if (a.characterID == aCharacterID) return a;
+            }
         }
         return null;
     }

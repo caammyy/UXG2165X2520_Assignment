@@ -25,14 +25,9 @@ public class enemyPatrolGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnPoints = Game.GetSpawnList();
-        currentLevelSpawnPoints = new List<Spawn>();
-        spawnCurrentLevel();
-        noOfSections = currentLevelSpawnPoints.Count;
-        noOfEnemies = currentLevelSpawnPoints[noOfSectionsCompleted].spawnFrequency;
-
-        spawnEnemyPatrolAreas();
-        spawnWalls();
+        
+        //spawnCurrentLevel();
+        
     }
     private void Update()
     {
@@ -40,8 +35,10 @@ public class enemyPatrolGenerator : MonoBehaviour
     }
 
 
-    void spawnCurrentLevel()
+    public void spawnCurrentLevel()
     {
+        spawnPoints = Game.GetSpawnList();
+        currentLevelSpawnPoints = new List<Spawn>();
         for (int i = 0; i < spawnPoints.Count; i++)
         {
             if (spawnPoints[i].spawnID.Contains(currentLevel.ToString()))
@@ -49,6 +46,11 @@ public class enemyPatrolGenerator : MonoBehaviour
                 currentLevelSpawnPoints.Add(spawnPoints[i]);
             }
         }
+        noOfSections = currentLevelSpawnPoints.Count;
+        noOfEnemies = currentLevelSpawnPoints[noOfSectionsCompleted].spawnFrequency;
+
+        spawnEnemyPatrolAreas();
+        spawnWalls();
     }
 
     void spawnEnemyPatrolAreas()

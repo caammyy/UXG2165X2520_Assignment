@@ -25,6 +25,7 @@ public class playerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         SetPlayer();
         SetLevel();
     }
@@ -36,37 +37,39 @@ public class playerUI : MonoBehaviour
         SetCharacterImage();
 
     }
-    void SetLevel()
+    public void SetLevel()
     {
         if (currentPlayerXP >= requiredPlayerXPtoNext)
             previousRequiredPlayerXPtoNext = requiredPlayerXPtoNext;
 
         plList = Game.GetPlayerLevelList();
-        foreach (PlayerLevel pl in plList)
+        if (plList != null)
         {
-            if (pl.levelNo == currentPlayerLevel)
+            foreach (PlayerLevel pl in plList)
             {
-                requiredPlayerXPtoNext = pl.levelXP;
+                if (pl.levelNo == currentPlayerLevel)
+                {
+                    requiredPlayerXPtoNext = pl.levelXP;
+                }
+            }
+
+            if (requiredPlayerXPtoNext > 0)
+                Level_Total.fillAmount = requiredPlayerXPtoNext / requiredPlayerXPtoNext;
+
+            currentLevel.text = "Level " + currentPlayerLevel;
+            XPstoLevel.text = (requiredPlayerXPtoNext - currentPlayerXP) + " to Level " + (currentPlayerLevel + 1);
+
+
+            if (currentPlayerXP > 0)
+            {
+                float total = (currentPlayerXP - previousRequiredPlayerXPtoNext) / (requiredPlayerXPtoNext - previousRequiredPlayerXPtoNext);
+                Level_Current.fillAmount = total;
+            }
+            else
+            {
+                Level_Current.fillAmount = 0;
             }
         }
-
-        if (requiredPlayerXPtoNext > 0)
-            Level_Total.fillAmount = requiredPlayerXPtoNext / requiredPlayerXPtoNext;
-
-        currentLevel.text = "Level " + currentPlayerLevel;
-        XPstoLevel.text = (requiredPlayerXPtoNext-currentPlayerXP) + " to Level " + (currentPlayerLevel + 1);
-
-
-        if (currentPlayerXP > 0)
-        {
-            float total = (currentPlayerXP - previousRequiredPlayerXPtoNext) / (requiredPlayerXPtoNext- previousRequiredPlayerXPtoNext);
-            Level_Current.fillAmount = total;
-        }
-        else
-        {
-            Level_Current.fillAmount = 0;
-        }
-
     }
     void SetCharacterImage()
     {

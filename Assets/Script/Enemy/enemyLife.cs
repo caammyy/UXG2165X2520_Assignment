@@ -41,7 +41,7 @@ public class enemyLife : MonoBehaviour
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
         //player xp
-        GameObject p = GameObject.Find("/PlayerController/Player(Clone)");
+        GameObject p = GameObject.Find("/GameController/Player(Clone)");
         p.GetComponent<playerLife>().playerXP += enemyXP;
 
         //disable

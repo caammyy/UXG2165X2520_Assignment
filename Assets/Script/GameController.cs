@@ -23,7 +23,9 @@ public class GameController : MonoBehaviour
     public void OnDataLoad()
     {
         //run what u want after the data has finished loading
-        Game.SetPlayer(new Player("1",initCreation,initCharID,initPlayerXP,InitPlayerLevel,initWeaponID,initEnemyKill,initDamageTaken,initShort));
+        GetComponent<playerController>().SetCharacter();
+        GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().spawnCurrentLevel();
+        //Game.SetPlayer(new Player("1",initCreation,initCharID,initPlayerXP,InitPlayerLevel,initWeaponID,initEnemyKill,initDamageTaken,initShort));
     }       
 
     private void Awake()
