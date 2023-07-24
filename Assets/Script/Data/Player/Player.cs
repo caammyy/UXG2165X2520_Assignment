@@ -16,7 +16,7 @@ public class Player
     public float playerShortestTimeTakenSection { get; }
 
 
-    public Player(DateTime playerCreation, string playerID, string playerCharacterID, int playerXP, int playerLevelNo, string playerWeaponID, int playerEnemiesKilled, float playerDamageTaken, float playerShortestTimeTakenSection)
+    public Player(string playerID, DateTime playerCreation,  string playerCharacterID, int playerXP, int playerLevelNo, string playerWeaponID, int playerEnemiesKilled, float playerDamageTaken, float playerShortestTimeTakenSection)
     {
         this.playerCreation = playerCreation;
         this.playerID = playerID;

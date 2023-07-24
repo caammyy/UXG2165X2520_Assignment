@@ -132,7 +132,7 @@ public class playerLife : MonoBehaviour
             {
                 currentPlayerID = "P01";
             }
-            currentPlayer = new Player(DateTime.Now, currentPlayerID, currentCharacterID, 0, 1, currentCharacterWeaponID, 0, 0, 0);
+            currentPlayer = new Player(currentPlayerID, DateTime.Now,  currentCharacterID, 0, 1, currentCharacterWeaponID, 0, 0, 0);
         }
         else
         {
@@ -203,7 +203,7 @@ public class playerLife : MonoBehaviour
     void UpdatePlayer()
     {
         
-        UpdatedPlayer = new Player(currentPlayer.playerCreation, currentPlayer.playerID, currentCharacterID, playerXP, currentLevel, currentCharacterWeaponID, currentPlayerEnemiesKilled, currentPlayerDamageTaken, currentPlayerShortTime);
+        UpdatedPlayer = new Player(currentPlayer.playerID,currentPlayer.playerCreation, currentCharacterID, playerXP, currentLevel, currentCharacterWeaponID, currentPlayerEnemiesKilled, currentPlayerDamageTaken, currentPlayerShortTime);
         currentPlayer = UpdatedPlayer;
     }
 

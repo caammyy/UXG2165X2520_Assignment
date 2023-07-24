@@ -108,6 +108,19 @@ public static class Game
     }
 
     //player
+    private static Player mainPlayer;
+
+    public static Player GetPlayer()
+    {
+        return mainPlayer;
+    }
+
+    public static void SetPlayer(Player player)
+    {
+        mainPlayer = player;
+    }
+
+    //player list
     private static List<Player> playerList;
     public static List<Player> GetPlayerList()
     {

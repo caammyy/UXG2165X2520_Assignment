@@ -2,16 +2,88 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using UnityEngine.TextCore.Text;
-using UnityEditor.VersionControl;
-using UnityEditor.AddressableAssets;
+using System;
+using UnityEngine.AddressableAssets;
+
 
 
 public class DataManager : MonoBehaviour
 {
-    void Start()
+    /**
+   public T ReadData<T>(string filepath)
+   {
+       string datastring = File.ReadAllText(filepath);
+       T Data = JsonUtility.FromJson<T>(datastring);
+       //Debug.Log(datastring);
+       return Data;
+   }
+
+  
+   public void LoadRefData()
+   {
+       string filePath = Path.Combine(Application.dataPath, "Script/Data/jsonData2.txt");
+       //persistent data path is for when you want to save the game data(?), data path is for the data alr inside unity
+
+       //string dataString = File.ReadAllText(filePath);
+       //Debug.Log(dataString);
+       DataScript dataScript = ReadData<DataScript>(filePath);
+      // DataScript dataScript = JsonUtility.FromJson<DataScript>(dataString);
+
+       processData(dataScript);
+   }
+    
+
+
+    public DataScript readRefData()
     {
-        LoadRefData();
+        DataScript jsonData;
+
+        using (StreamReader r = new StreamReader(Path.Combine(Application.streamingAssetsPath, "jsonData2.txt")))
+        {
+            string json = r.ReadToEnd();
+            jsonData = JsonConvert.DeserializeObject<DataScript>(json);
+        }
+       // processData();
+        return jsonData;
+    }
+
+    public static void writeRefData(string filename, string output)
+    {
+        using (StreamWriter w = new StreamWriter("assets/data/" + filename + ".json"))
+        {
+            string json = JsonConvert.SerializeObject(output);
+            w.Write(json);
+        }
+
+        return;
+    }
+
+    **/
+
+    public void LoadRefData(Action onLoaded)
+    {
+        StartCoroutine(DoLoadRefData("Demodata", onLoaded));
+    }
+
+    public IEnumerator DoLoadRefData(string path, Action Onloaded)
+    {
+        bool processing = true;
+        string loadedText = "";
+
+        Addressables.LoadAssetAsync<TextAsset>(path).Completed += (op) =>
+        {
+            loadedText = op.Result.text;
+            processing = false;
+        };
+
+        while (processing)
+        {
+            yield return null;
+        }
+
+        DataScript datascript = JsonUtility.FromJson<DataScript>(loadedText);
+        processData(datascript);
+        Onloaded?.Invoke();
     }
 
     public T ReadData<T>(string filepath)
@@ -22,21 +94,14 @@ public class DataManager : MonoBehaviour
         return Data;
     }
 
-    public void LoadRefData()
+    public void WriteData<T>(string filepath, T data)
     {
-        string filePath = Path.Combine(Application.dataPath, "Script/Data/jsonData2.txt");
-        //persistent data path is for when you want to save the game data(?), data path is for the data alr inside unity
-
-        //string dataString = File.ReadAllText(filePath);
-        //Debug.Log(dataString);
-        DataScript dataScript = ReadData<DataScript>(filePath);
-       // DataScript dataScript = JsonUtility.FromJson<DataScript>(dataString);
-
-        processData(dataScript);
+        string datastring = JsonUtility.ToJson(data);
+        File.WriteAllText(filepath, datastring);
     }
-    
 
-    private void processData(DataScript dataScript)
+
+    public void processData(DataScript dataScript)
     {
         //characters
         List<Characters> characterList = new List<Characters>();
@@ -113,7 +178,7 @@ public class DataManager : MonoBehaviour
         List<Player> playerList = new List<Player>();
         foreach (RefPlayer refPlayer in dataScript.Player)
         {
-            Player player = new Player(refPlayer.playerCreation, refPlayer.playerID, refPlayer.playerCharacterID, refPlayer.playerXP, refPlayer.playerLevelNo, refPlayer.playerWeaponID, refPlayer.playerEnemiesKilled, refPlayer.playerDamageTaken, refPlayer.playerShortestTimeTakenSection);
+            Player player = new Player(refPlayer.playerID, refPlayer.playerCreation, refPlayer.playerCharacterID, refPlayer.playerXP, refPlayer.playerLevelNo, refPlayer.playerWeaponID, refPlayer.playerEnemiesKilled, refPlayer.playerDamageTaken, refPlayer.playerShortestTimeTakenSection);
             playerList.Add(player);
         }
         Game.SetPlayerList(playerList);
