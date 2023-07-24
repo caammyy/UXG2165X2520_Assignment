@@ -159,7 +159,7 @@ public class DataManager : MonoBehaviour
         List<GameLevel> gamelevelList = new List<GameLevel>();
         foreach (RefGameLevel refgamelevel in dataScript.GameLevel)
         {
-            GameLevel gamelevel = new GameLevel(refgamelevel.gameLevelID, refgamelevel.cutsceneSetID, refgamelevel.gameSpawnPointX, refgamelevel.gameSpawnPointY, refgamelevel.gameEndPointX, refgamelevel.gameEndPointY);
+            GameLevel gamelevel = new GameLevel(refgamelevel.gameLevelID, refgamelevel.gameSpawnPointX, refgamelevel.gameSpawnPointY, refgamelevel.gameEndPointX, refgamelevel.gameEndPointY);
             gamelevelList.Add(gamelevel);
         }
         Game.SetGameLevelList(gamelevelList);
@@ -182,5 +182,14 @@ public class DataManager : MonoBehaviour
             playerList.Add(player);
         }
         Game.SetPlayerList(playerList);
+
+        //scene
+        List<Scene> sceneList = new List<Scene>();
+        foreach (RefScene refScene in dataScript.Scene)
+        {
+            Scene scene = new Scene(refScene.sceneName, refScene.cutSceneSetID, refScene.gameLevelID);
+            sceneList.Add(scene);
+        }
+        Game.SetSceneList(sceneList);
     }
 }

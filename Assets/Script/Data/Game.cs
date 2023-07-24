@@ -134,6 +134,19 @@ public static class Game
         playerList = hList;
     }
 
+    //scene
+    private static List<Scene> sceneList;
+
+    public static List<Scene> GetSceneList()
+    {
+        return sceneList;
+    }
+
+    public static void SetSceneList(List<Scene> iList)
+    {
+        sceneList = iList;
+    }
+
 
 
     //DialogueObject

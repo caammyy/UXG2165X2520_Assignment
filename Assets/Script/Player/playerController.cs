@@ -7,12 +7,8 @@ public class playerController : MonoBehaviour
 {
     public GameObject playerGO;
     private Characters currentCharacter;
+    public Vector3 playerSpawn;
     List<Characters> cList;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     public void SetCharacter()
     {
@@ -37,6 +33,8 @@ public class playerController : MonoBehaviour
             playerGO.GetComponent<playerLife>().currentCharacterHp = currentCharacter.characterHp;
             playerGO.GetComponent<playerLife>().currentCharacterWeaponID = currentCharacter.weaponID;
             playerGO.GetComponent<playerLife>().currentCharacterName = currentCharacter.characterName;
+
+            transform.position = playerSpawn;
 
             Instantiate(playerGO, transform);
 

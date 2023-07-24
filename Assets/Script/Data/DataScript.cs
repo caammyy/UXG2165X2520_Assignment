@@ -14,4 +14,5 @@ public class DataScript
     public List<RefGameLevel> GameLevel;
     public List<RefPlayerLevel> PlayerLevel;
     public List<RefPlayer> Player;
+    public List<RefScene> Scene;
 }
