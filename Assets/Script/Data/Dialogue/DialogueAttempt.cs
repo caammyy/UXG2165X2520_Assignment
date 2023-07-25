@@ -14,9 +14,7 @@ public class DialogueAttempt : MonoBehaviour
     public Image leftEmotion;
     public Image rightEmotion;
 
-    public Image Space;
     public TextMeshProUGUI SelectInstructions;
-    public Button NextSceneButton;
     public Button nextButton;
 
     public TextMeshProUGUI Testname;
@@ -55,7 +53,6 @@ public class DialogueAttempt : MonoBehaviour
         HideImage(leftEmotion);
         HideImage(rightEmotion);
         SelectInstructions.gameObject.SetActive(false);
-        NextSceneButton.gameObject.SetActive(false);
     }
 
     //image
@@ -162,7 +159,6 @@ public class DialogueAttempt : MonoBehaviour
                         leftImage.GetComponent<Image>().sprite = s;
                     });
                 }
-                HideImage(Space);
                 SelectInstructions.gameObject.SetActive(true);
                 HideImage(rightEmotion);
                 HideImage(rightImage);
@@ -186,8 +182,6 @@ public class DialogueAttempt : MonoBehaviour
             }
             else
             {
-                ShowImage(Space);
-
                 DialogueText.text = currentCutscene[index].dialogue;
                 nextScene = currentCutscene[index].nextcutsceneRefID;
 
@@ -217,7 +211,6 @@ public class DialogueAttempt : MonoBehaviour
                 if (currentCutscene[index].currentSpeaker == "Left")
                 {
                     SelectInstructions.gameObject.SetActive(false);
-                    HideImage(Space);
                     HideImage(rightEmotion);
                     HideImage(rightImage);
                     ShowImage(leftImage);
@@ -232,7 +225,6 @@ public class DialogueAttempt : MonoBehaviour
                 if (currentCutscene[index].currentSpeaker == "Right")
                 {
                     SelectInstructions.gameObject.SetActive(false);
-                    HideImage(Space);
                     HideImage(leftEmotion);
                     HideImage(leftImage);
                     ShowImage(rightImage);
@@ -293,7 +285,6 @@ public class DialogueAttempt : MonoBehaviour
                 if (currentCutscene[index].currentSpeaker == "Left")
                 {
                     SelectInstructions.gameObject.SetActive(false);
-                    HideImage(Space);
                     HideImage(rightEmotion);
                     HideImage(rightImage);
                     ShowImage(leftImage);
@@ -308,7 +299,6 @@ public class DialogueAttempt : MonoBehaviour
                 if (currentCutscene[index].currentSpeaker == "Right")
                 {
                     SelectInstructions.gameObject.SetActive(false);
-                    HideImage(Space);
                     HideImage(leftEmotion);
                     HideImage(leftImage);
                     ShowImage(rightImage);
@@ -353,7 +343,6 @@ public class DialogueAttempt : MonoBehaviour
         HideImage(leftEmotion);
         HideImage(rightEmotion);
         SelectInstructions.gameObject.SetActive(false);
-        NextSceneButton.gameObject.SetActive(false);
         ReadCutscene();
     }
 
