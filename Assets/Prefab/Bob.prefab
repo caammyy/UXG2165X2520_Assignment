@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4435618223758901131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4435618225360253423}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: -1018319305
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2048895045, guid: 9f559cc556ea3d348b3fd04a6258f9e4, type: 3}
+  m_Sprite: {fileID: 999930713, guid: a3e61643009ea664eac5e8b15e6d8fdc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,18 +125,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035852596, y: -0.4704631}
+  m_Offset: {x: -0.031885445, y: -0.103948176}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.5, y: 4.15625}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 3.5, y: 4.15625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.43465433, y: 0.9471433}
+  m_Size: {x: 0.44854748, y: 0.74684584}
   m_EdgeRadius: 0
 --- !u!95 &4435618223758900849
 Animator:
@@ -148,7 +148,7 @@ Animator:
   m_GameObject: {fileID: 4435618223758901131}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fefc148ceb63f524fa4be1155a0a7dfd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0118c1c302bba1743b345c4aa3009352, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -187,9 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bf55aafb0822f4c8fbd3550cd13f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCharacterID: C01
-  currentCharacterHp: 10
-  currentCharacterName: Girl
+  currentCharacterID: C03
+  currentCharacterHp: 12
+  currentCharacterName: Bob
   currentCharacterWeaponID: sword_basic
   unlockedWeapons: 0
   currentPlayerEnemiesKilled: 0

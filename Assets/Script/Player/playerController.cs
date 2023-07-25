@@ -15,7 +15,7 @@ public class playerController : MonoBehaviour
         cList = Game.GetCharacterList();
         if (!PlayerPrefs.HasKey("characterID"))
         {
-            currentCharacter = cList[0];
+            currentCharacter = cList[2];
         }
         else
         {

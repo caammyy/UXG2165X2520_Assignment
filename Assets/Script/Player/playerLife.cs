@@ -54,9 +54,11 @@ public class playerLife : MonoBehaviour
     private void Update()
     {
         SetLevel();
-        UpdateKey();
+        if (currentPlayer.playerCharacterID == "C01")
+        {
+            UpdateKey();
+        }
         UpdateWeapon();
-
         GetComponent<playerAttack>().currentAttackDamage = playerWeaponDamage + currentPlayerLevel.levelAD;
         playerHealth = currentCharacterHp + currentPlayerLevel.levelHP;
 
@@ -67,7 +69,6 @@ public class playerLife : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall")){
             StartCoroutine(playerTut.defText("You must defeat the slimes before carrying on!", 3));
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,11 +83,14 @@ public class playerLife : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Weapon"))
         {
-            aniWeapon = Int32.Parse((collision.gameObject.GetComponent<SpriteRenderer>().sprite.name).Replace("WeaponFloat_", ""));
-            GameObject.Find("/Canvas/ItemsPanel/Slot" + (aniWeapon + 1)).SetActive(true);
-            GameObject.Find("/Canvas/ItemsPanel/Slot" + (aniWeapon + 1)).GetComponent<Image>().color = (Color)(new Color32(130, 130, 130, 255));
-            unlockedWeapons = aniWeapon;
-            UpdateWeapon();
+            if (currentPlayer.playerCharacterID == "C01")
+            {
+                aniWeapon = Int32.Parse((collision.gameObject.GetComponent<SpriteRenderer>().sprite.name).Replace("WeaponFloat_", ""));
+                GameObject.Find("/Canvas/ItemsPanel/Slot" + (aniWeapon + 1)).SetActive(true);
+                GameObject.Find("/Canvas/ItemsPanel/Slot" + (aniWeapon + 1)).GetComponent<Image>().color = (Color)(new Color32(130, 130, 130, 255));
+                unlockedWeapons = aniWeapon;
+                UpdateWeapon();
+            }
             Destroy(collision.gameObject);
         }
     }
@@ -94,7 +98,6 @@ public class playerLife : MonoBehaviour
     {
         currentPlayerDamageTaken += dmg;
         currentHealth = Mathf.Clamp(currentHealth - dmg, 0, playerHealth);
-        //GameObject.Find("/Canvas/Healthbar").GetComponent<playerHealthbar>().playerHealth 
         ani.SetTrigger("hurt");
         if (currentHealth == 0f)
         {
@@ -228,29 +231,32 @@ public class playerLife : MonoBehaviour
     }
     void UpdateKey()
     {
-        for (int i = 0; i <= unlockedWeapons; i++)
+        if (currentPlayer.playerCharacterID == "C01")
         {
-            GameObject.Find("/Canvas/ItemsPanel/Slot" + (1+i)).GetComponent<Image>().color = (Color)(new Color32(255, 255, 255, 255));
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            aniWeapon = 0;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (unlockedWeapons >= 1)
+            for (int i = 0; i <= unlockedWeapons; i++)
             {
-                aniWeapon = 1;
+                GameObject.Find("/Canvas/ItemsPanel/Slot" + (1 + i)).GetComponent<Image>().color = (Color)(new Color32(255, 255, 255, 255));
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (unlockedWeapons >= 2)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                aniWeapon = 2;
+                aniWeapon = 0;
             }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (unlockedWeapons >= 1)
+                {
+                    aniWeapon = 1;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (unlockedWeapons >= 2)
+                {
+                    aniWeapon = 2;
+                }
+            }
+            GameObject.Find("/Canvas/ItemsPanel/Slot" + (aniWeapon + 1)).GetComponent<Image>().color = (Color)(new Color32(130, 130, 130, 255));
+            UpdateWeapon();
         }
-        GameObject.Find("/Canvas/ItemsPanel/Slot" + (aniWeapon + 1)).GetComponent<Image>().color = (Color)(new Color32(130, 130, 130, 255));
-        UpdateWeapon();
     }
 }

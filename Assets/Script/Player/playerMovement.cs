@@ -56,13 +56,19 @@ public class playerMovement : MonoBehaviour
         if (dirX > 0f)
         {
             state = MovementState.walk;
-            sprite.flipX = true;
+            if (GetComponent<playerLife>().currentCharacterID == "C01")
+                sprite.flipX = true;
+            else
+                sprite.flipX = false;
             attackPoint.transform.localPosition = right;
         }
         else if (dirX < 0f)
         {
             state = MovementState.walk;
-            sprite.flipX = false;
+            if (GetComponent<playerLife>().currentCharacterID == "C01")
+                sprite.flipX = false;
+            else
+                sprite.flipX = true;
             attackPoint.transform.localPosition = left;
         }
         else

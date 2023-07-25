@@ -81,6 +81,14 @@ MonoBehaviour:
     m_Address: Assets/Art/Character (RedHood)/red hood itch free Copy-Sheet.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 91dd6e6a15a712a4e9c6ddd051378ca5
+    m_Address: Assets/Prefab/Boy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f9bb03dfb5a16184985be5b687aab199
+    m_Address: Assets/Prefab/Bob.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 790e9199e6e487c40990b0a1910c969a, type: 2}
   m_SchemaSet:
