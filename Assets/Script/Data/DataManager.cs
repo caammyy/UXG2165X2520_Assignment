@@ -73,6 +73,54 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(filepath, datastring);
     }
 
+    public void SavePlayerData()
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, "SaveData.txt");
+
+        DynPlayer dynPlayer = MakeSaveData(Game.GetPlayer());
+
+        WriteData<DynPlayer>(filePath, dynPlayer);
+    }
+
+    public bool LoadPlayerData()
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, "SaveData.txt");
+        
+        if (File.Exists(filePath))
+        {
+            DynPlayer dynPlayer = ReadData<DynPlayer>(filePath);
+
+            Game.SetPlayer(LoadSaveData(dynPlayer));
+
+            return true;
+        }
+        return false;
+    }
+
+    private DynPlayer MakeSaveData(Player player)
+    {
+        DynPlayer dynplayer = new DynPlayer();
+        dynplayer.playerCreation = player.GetPlayerCreation();
+        dynplayer.playerID = player.GetPlayerID();
+        dynplayer.playerCharacterID = player.GetPlayerCharacterID();
+        dynplayer.playerXP = player.GetPlayerXP();
+        dynplayer.playerLevelNo = player.GetPlayerLevelNo();
+        dynplayer.playerWeaponID = player.GetPlayerWeaponID();
+        dynplayer.playerEnemiesKilled = player.GetPlayerEnemiesKilled();
+        dynplayer.playerDamageTaken = player.GetPlayerDamageTaken();
+        dynplayer.playerShortestTimeTakenSection = player.GetPlayerShortestTimeTakenSection();
+
+        return dynplayer;
+    }
+
+    private Player LoadSaveData(DynPlayer dynPlayer)
+    {
+        Player player = new Player(dynPlayer.playerCreation, dynPlayer.playerID, dynPlayer.playerCharacterID,
+            dynPlayer.playerXP, dynPlayer.playerLevelNo, dynPlayer.playerWeaponID, dynPlayer.playerEnemiesKilled,
+            dynPlayer.playerDamageTaken, dynPlayer.playerShortestTimeTakenSection);
+
+        return player;
+    }
 
     public void processData(DataScript dataScript)
     {
@@ -151,7 +199,7 @@ public class DataManager : MonoBehaviour
         List<Player> playerList = new List<Player>();
         foreach (RefPlayer refPlayer in dataScript.Player)
         {
-            Player player = new Player(refPlayer.playerID, refPlayer.playerCreation, refPlayer.playerCharacterID, refPlayer.playerXP, refPlayer.playerLevelNo, refPlayer.playerWeaponID, refPlayer.playerEnemiesKilled, refPlayer.playerDamageTaken, refPlayer.playerShortestTimeTakenSection);
+            Player player = new Player(refPlayer.playerCreation, refPlayer.playerID, refPlayer.playerCharacterID, refPlayer.playerXP, refPlayer.playerLevelNo, refPlayer.playerWeaponID, refPlayer.playerEnemiesKilled, refPlayer.playerDamageTaken, refPlayer.playerShortestTimeTakenSection);
             playerList.Add(player);
         }
         Game.SetPlayerList(playerList);

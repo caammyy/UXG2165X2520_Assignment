@@ -7,6 +7,7 @@ public class endDoor : MonoBehaviour
 {
     public void NextLevel()
     {
+        GameObject.Find("GameController").GetComponent<DataManager>().SavePlayerData();
         Invoke("GoNextLevel", 2.0f);
     }
     public void GoNextLevel()

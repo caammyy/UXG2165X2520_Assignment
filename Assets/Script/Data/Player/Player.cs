@@ -16,7 +16,7 @@ public class Player
     public float playerShortestTimeTakenSection { get; }
 
 
-    public Player(string playerID, DateTime playerCreation,  string playerCharacterID, int playerXP, int playerLevelNo, string playerWeaponID, int playerEnemiesKilled, float playerDamageTaken, float playerShortestTimeTakenSection)
+    public Player(DateTime playerCreation, string playerID, string playerCharacterID, int playerXP, int playerLevelNo, string playerWeaponID, int playerEnemiesKilled, float playerDamageTaken, float playerShortestTimeTakenSection)
     {
         this.playerCreation = playerCreation;
         this.playerID = playerID;
@@ -28,4 +28,53 @@ public class Player
         this.playerDamageTaken = playerDamageTaken;
         this.playerShortestTimeTakenSection = playerShortestTimeTakenSection;
     }
+
+    public DateTime GetPlayerCreation()
+    {
+        return playerCreation;
+    }
+    
+    public string GetPlayerID()
+    {
+        return playerID;
+    }
+
+    public string GetPlayerCharacterID()
+    {
+        return playerCharacterID;
+    }
+
+    public int GetPlayerXP()
+    {
+        return playerXP;
+    }
+
+    public int GetPlayerLevelNo()
+    {
+        return playerLevelNo;
+    }
+
+    public string GetPlayerWeaponID()
+    {
+        return playerWeaponID;
+    }
+
+    public int GetPlayerEnemiesKilled()
+    {
+        return playerEnemiesKilled;
+    }
+
+    public float GetPlayerDamageTaken()
+    {
+        return playerDamageTaken;
+    }
+
+    public float GetPlayerShortestTimeTakenSection()
+    {
+        return playerShortestTimeTakenSection;
+    }
+
+
+
 }
+

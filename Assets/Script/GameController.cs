@@ -20,6 +20,12 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         DataManager datamanager = GetComponent<DataManager>();
         datamanager.LoadRefData(OnDataLoad);
+
+        if (!datamanager.LoadPlayerData())
+        {
+            Game.SetPlayer(new Player(DateTime.Now, "1", "C01", 0, 0, "W01", 0, 0, 0f));
+            Debug.Log("Player saved");
+        }
     }
 
     public void OnDataLoad()
