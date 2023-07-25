@@ -25,6 +25,7 @@ public class settingsController : MonoBehaviour
     }
     public void Pause()
     {
+        Debug.Log("pause");
         isPaused = true;
         settingsPanel.SetActive(true);
         Time.timeScale = 0f;
@@ -38,6 +39,7 @@ public class settingsController : MonoBehaviour
     public void RestartLevel()
     {
         Time.timeScale = 1f;
+        Destroy(GameObject.Find("/GameController/Player(Clone)").gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

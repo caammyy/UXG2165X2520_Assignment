@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -47,6 +48,12 @@ public class playerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         UpdateAnimationState();
+
+        if (gameObject.transform.position.y <= -4)
+        {
+            GameObject.Find("Main Camera").GetComponent<cameraController>().transform.position = new Vector3(transform.position.x, -4, -10);
+            Invoke("destroyPlayer", 1);
+        }
     }
 
     private void UpdateAnimationState()
@@ -80,12 +87,16 @@ public class playerMovement : MonoBehaviour
         {
             state = MovementState.jump;
         }
-
         ani.SetInteger("state", (int)state); 
     }
 
     private bool isGrounded()
     {
         return Physics2D.BoxCast(boxCol.bounds.center, boxCol.bounds.size, 0f, Vector2.down, .1f, jumpGround);
+    }
+    void destroyPlayer()
+    {
+        Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -54,7 +54,6 @@ public class playerLife : MonoBehaviour
         SetPlayerVariables();
         ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
     }
     private void Update()
     {
@@ -115,6 +114,8 @@ public class playerLife : MonoBehaviour
     }
     private void RestartLevel()
     {
+        Destroy(gameObject);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
