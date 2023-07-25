@@ -322,7 +322,11 @@ public class DialogueAttempt : MonoBehaviour
             }
 
             isChoice = false;
-            index++;
+            
+            while(currentCutscene[index].cutsceneRefID != nextScene)
+            {
+                index++;
+            }
         }
 
         else
