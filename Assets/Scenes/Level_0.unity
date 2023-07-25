@@ -5199,7 +5199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: EXIT GAME
+  m_text: BACK TO HOME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dbeb6eb2193d2564cb6bad40d132798b, type: 2}
   m_sharedMaterial: {fileID: -8777752204754063443, guid: dbeb6eb2193d2564cb6bad40d132798b, type: 2}
@@ -11760,7 +11760,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1558322036}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1024843529}
+        m_TargetAssemblyTypeName: settingsController, Assembly-CSharp
+        m_MethodName: BackToHome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1558322036
 MonoBehaviour:
   m_ObjectHideFlags: 0

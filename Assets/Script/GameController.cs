@@ -7,18 +7,12 @@ using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour
 {
-    //public string initAvatar, initCharID,initPlayID;
-    //public DateTime initCreation;
-    //public float initDamageTaken,initShort;
-    //public string initWeaponID;
-    //public int initEnemyKill,initPlayerXP,InitPlayerLevel;
-
     public int currentCutsceneID = 101;
 
 
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         DataManager datamanager = GetComponent<DataManager>();
         datamanager.LoadRefData(OnDataLoad);
 
@@ -32,7 +26,6 @@ public class GameController : MonoBehaviour
     public void OnDataLoad()
     {
         //run what u want after the data has finished loading
-        //Game.SetPlayer(new Player("1",initCreation,initCharID,initPlayerXP,InitPlayerLevel,initWeaponID,initEnemyKill,initDamageTaken,initShort));
         if (SceneManager.GetActiveScene().name.Contains("dialogue"))
         {
             DialogueAttempt da = GameObject.Find("DialogueManager").GetComponent<DialogueAttempt>();
@@ -51,11 +44,5 @@ public class GameController : MonoBehaviour
             GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().spawnCurrentLevel();
         }
             
-    }      //test 
-
-    //public void OnClickCharacter()
-    //{
-    //    pl.selectedCharacterName = EventSystem.current.currentSelectedGameObject.name;
-    //    pl.UpdateCharacter();
-    //}
+    }
 }

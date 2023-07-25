@@ -42,4 +42,11 @@ public class settingsController : MonoBehaviour
         Destroy(GameObject.Find("/GameController/Player(Clone)").gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void BackToHome()
+    {
+        //Destroy(GameObject.Find("GameController"));
+        isPaused = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadSceneAsync(0);
+    }
 }
