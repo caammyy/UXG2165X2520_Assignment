@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
             GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().spawnCurrentLevel();
         }
             
-    }       
+    }      //test 
 
     private void Awake()
     {

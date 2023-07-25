@@ -17,7 +17,7 @@ public class ButtonDestination : MonoBehaviour
     public void readCutsceneChoice()
     {
         int.TryParse(destination, out int result);
-        reader.ReadCutscene(result);
+        reader.ReadCutsceneChoice(result);
     }
 
 }
