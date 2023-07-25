@@ -31,7 +31,10 @@ public class GameController : MonoBehaviour
             DialogueAttempt da = GameObject.Find("DialogueManager").GetComponent<DialogueAttempt>();
             da.DialogueStarter();
         }
+        else if (SceneManager.GetActiveScene().name == "CharacterSelect")
+        {
 
+        }
         else
         {
             GetComponent<SceneController>().GetLevelforScene();
