@@ -35,7 +35,7 @@ public class DialogueAttempt : MonoBehaviour
     //default starting cutscene
     int currentCutsceneID = 101;
     int index = 0;
-    bool isChoice;
+    public bool isChoice;
     public int nextScene = 101001;
     bool cutsceneOver = true;
     List<Dialogue> currentCutscene;
@@ -96,10 +96,8 @@ public class DialogueAttempt : MonoBehaviour
    
     void Update()
     {
-        CutSceneSet();
-
         if (Input.GetKeyDown(KeyCode.Space))
-        {
+        {          
             ReadCutscene();
         }
     }
@@ -129,6 +127,8 @@ public class DialogueAttempt : MonoBehaviour
 
     public void ReadCutscene()
     {
+        CutSceneSet();
+
         if (isChoice)
         {
             return;
@@ -140,6 +140,16 @@ public class DialogueAttempt : MonoBehaviour
             if (currentCutscene[index].nextcutsceneRefID == -2)
             {
                 isChoice = true;
+
+                    AssetManager.LoadSprite(currentCutscene[index].leftEmotion, (Sprite s) =>
+                    {
+                        leftEmotion.GetComponent<Image>().sprite = s;
+                    });
+
+                    AssetManager.LoadSprite(currentCutscene[index].leftImage, (Sprite s) =>
+                    {
+                        leftImage.GetComponent<Image>().sprite = s;
+                    });
 
                 HideImage(Space);
                 SelectInstructions.gameObject.SetActive(true);
@@ -160,7 +170,6 @@ public class DialogueAttempt : MonoBehaviour
                 select2button.GetComponent<ButtonDestination>().destination = choices[3];
 
                 //this.GetComponent<SpriteRenderer>().sprite = AssetManager.LoadSprite(Game.GetImage())
-                Debug.Log("PAUSED");
 
                 return; //ends the code so that it doesn't break :)
             }
@@ -242,6 +251,8 @@ public class DialogueAttempt : MonoBehaviour
 
     public void ReadCutsceneChoice(int destination)
     {
+        CutSceneSet();
+
         if (currentCutscene[index].cutsceneRefID == destination)
         {
             DialogueText.text = currentCutscene[index].dialogue;
