@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
 
     public int currentCutsceneID = 101;
 
+
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -31,7 +32,6 @@ public class GameController : MonoBehaviour
     public void OnDataLoad()
     {
         //run what u want after the data has finished loading
-        
         //Game.SetPlayer(new Player("1",initCreation,initCharID,initPlayerXP,InitPlayerLevel,initWeaponID,initEnemyKill,initDamageTaken,initShort));
         if (!SceneManager.GetActiveScene().name.Contains("Level"))
         {
@@ -47,15 +47,15 @@ public class GameController : MonoBehaviour
             GetComponent<SceneController>().GetLevelforScene();
             GetComponent<SceneController>().SetSpawnandEnd();
             GetComponent<playerController>().SetCharacter();
+            //pl.UpdateCharacter();
             GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().spawnCurrentLevel();
         }
             
     }      //test 
 
-    public void OnClickCharacter()
-    {
-        playerLife pl = GameObject.Find("/GameController/Player(Clone)").GetComponent<playerLife>();
-        pl.selectedCharacterName = EventSystem.current.currentSelectedGameObject.name;
-        pl.UpdateCharacter();
-    }
+    //public void OnClickCharacter()
+    //{
+    //    pl.selectedCharacterName = EventSystem.current.currentSelectedGameObject.name;
+    //    pl.UpdateCharacter();
+    //}
 }

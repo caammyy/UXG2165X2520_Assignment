@@ -192,6 +192,7 @@ MonoBehaviour:
   currentCharacterName: Bob
   currentCharacterWeaponID: sword_basic
   unlockedWeapons: 0
+  selectedCharacterName: 
   currentPlayerEnemiesKilled: 0
   currentPlayerDamageTaken: 0
   currentPlayerShortTime: 0

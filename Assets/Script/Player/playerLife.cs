@@ -58,7 +58,6 @@ public class playerLife : MonoBehaviour
     }
     private void Update()
     {
-        UpdateCharacter();
         SetLevel();
         if (currentPlayer.playerCharacterID == "C01")
         {
@@ -123,6 +122,7 @@ public class playerLife : MonoBehaviour
 
     void SetPlayer()
     {
+
         List<Player> pList = Game.GetPlayerList();
         if (!PlayerPrefs.HasKey("PlayerID"))
         {
@@ -144,6 +144,8 @@ public class playerLife : MonoBehaviour
                 currentPlayerID = "P01";
             }
             currentPlayer = new Player(DateTime.Now, currentPlayerID, currentCharacterID, 0, 1, currentCharacterWeaponID, 0, 0, 0);
+            Game.SetPlayer(currentPlayer);
+            Debug.Log(Game.GetPlayer().GetPlayerCharacterID());
         }
         else
         {
@@ -267,6 +269,7 @@ public class playerLife : MonoBehaviour
             UpdateWeapon();
         }
     }
+
     public void UpdateCharacter()
     {
         cList = Game.GetCharacterList();
@@ -274,21 +277,16 @@ public class playerLife : MonoBehaviour
         {
             GameObject.Find("/Canvas/CharactersPanel/C0" + (i + 1)).GetComponent<Image>().color = (Color)(new Color32(255, 255, 255, 255));
         }
-        if (!(selectedCharacterName == currentCharacterName))
+        Debug.Log("selected" + selectedCharacterName);
+        if (!(selectedCharacterName == currentCharacterID))
         {
-            foreach (Characters c in cList)
-            {
-                if (selectedCharacterName == c.characterName)
-                {
-                    currentCharacterHp = c.characterHp;
-                    currentCharacterID = c.characterID;
-                    currentCharacterWeaponID = c.weaponID;
-                    currentCharacterName = c.characterName;
-                }
-            }
+            PlayerPrefs.SetString("characterID", selectedCharacterName);
+            GameObject.Find("GameController").GetComponent<playerController>().SetCharacter();
+            SetPlayer();
+            SetPlayerVariables();
         }
         GameObject.Find("/Canvas/CharactersPanel/" + currentCharacterID).GetComponent<Image>().color = (Color)(new Color32(130, 130, 130, 255));
-
+        
     }
     
 }
