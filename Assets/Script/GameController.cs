@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameController : MonoBehaviour
     //public float initDamageTaken,initShort;
     //public string initWeaponID;
     //public int initEnemyKill,initPlayerXP,InitPlayerLevel;
+
+    public int currentCutsceneID = 101;
 
     void Start()
     {
@@ -21,11 +24,22 @@ public class GameController : MonoBehaviour
     public void OnDataLoad()
     {
         //run what u want after the data has finished loading
-        GetComponent<SceneController>().GetLevelforScene();
-        GetComponent<SceneController>().SetSpawnandEnd();
-        GetComponent<playerController>().SetCharacter();
-        GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().spawnCurrentLevel();
+        
         //Game.SetPlayer(new Player("1",initCreation,initCharID,initPlayerXP,InitPlayerLevel,initWeaponID,initEnemyKill,initDamageTaken,initShort));
+        if (!SceneManager.GetActiveScene().name.Contains("Level"))
+        {
+            DialogueAttempt da = GameObject.Find("DialogueManager").GetComponent<DialogueAttempt>();
+            da.DialogueStarter();
+        }
+
+        else
+        {
+            GetComponent<SceneController>().GetLevelforScene();
+            GetComponent<SceneController>().SetSpawnandEnd();
+            GetComponent<playerController>().SetCharacter();
+            GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().spawnCurrentLevel();
+        }
+            
     }       
 
     private void Awake()
