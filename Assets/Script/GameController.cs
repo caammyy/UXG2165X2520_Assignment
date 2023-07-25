@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
     {
         //run what u want after the data has finished loading
         //Game.SetPlayer(new Player("1",initCreation,initCharID,initPlayerXP,InitPlayerLevel,initWeaponID,initEnemyKill,initDamageTaken,initShort));
-        if (!SceneManager.GetActiveScene().name.Contains("Level"))
+        if (SceneManager.GetActiveScene().name.Contains("dialogue"))
         {
             DialogueAttempt da = GameObject.Find("DialogueManager").GetComponent<DialogueAttempt>();
             da.DialogueStarter();
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
         {
 
         }
-        else
+        else if (SceneManager.GetActiveScene().name.Contains("Level"))
         {
             GetComponent<SceneController>().GetLevelforScene();
             GetComponent<SceneController>().SetSpawnandEnd();

@@ -17,6 +17,10 @@ public class playerAttack : MonoBehaviour
 
     public LayerMask enemyLayer;
 
+    public float topTimer = 0f;
+    public float zoneTimer = 0f;
+    public bool startZoneTimer = false;
+
 
     float nextAttackTime = 0f;
 
@@ -39,7 +43,23 @@ public class playerAttack : MonoBehaviour
                 }
             }
         }
+        if (startZoneTimer)
+        {
+            zoneTimer += Time.deltaTime;
+        }
+        else
+        {
+            if (topTimer == 0f && zoneTimer > 0f)
+            {
+                topTimer = zoneTimer;
+            }
+            else if (zoneTimer < topTimer)
+            {
+                topTimer = zoneTimer;
+            }
+        }
         
+
     }
     void MeleeAttack()
     {
@@ -49,11 +69,20 @@ public class playerAttack : MonoBehaviour
         //damage enemies
         foreach(Collider2D enemy in hitEnemies)
         {
+            if (GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().noOfEnemies == 3)
+            {
+                zoneTimer = 0f;
+                startZoneTimer = true;
+            }
             enemy.GetComponent<enemyLife>().TakeDamage(currentAttackDamage);
             if (enemy.GetComponent<enemyLife>().death)
             {
                 GetComponent<playerLife>().currentPlayerEnemiesKilled += 1;
                 GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().noOfEnemies -= 1;
+            }
+            if (GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().noOfEnemies == 0)
+            {
+                startZoneTimer = false;
             }
         }
         

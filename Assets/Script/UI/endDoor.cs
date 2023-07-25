@@ -13,6 +13,6 @@ public class endDoor : MonoBehaviour
     }
     public void GoNextLevel()
     {
-        SceneManager.LoadScene("Dialogue");
+        SceneManager.LoadScene("Summary");
     }
 }

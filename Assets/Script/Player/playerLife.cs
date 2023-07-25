@@ -66,9 +66,7 @@ public class playerLife : MonoBehaviour
         UpdateWeapon();
         GetComponent<playerAttack>().currentAttackDamage = playerWeaponDamage + currentPlayerLevel.levelAD;
         playerHealth = currentCharacterHp + currentPlayerLevel.levelHP;
-
         UpdatePlayer();
-        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -215,7 +213,8 @@ public class playerLife : MonoBehaviour
 
     void UpdatePlayer()
     {
-        
+        currentPlayerShortTime = GetComponent<playerAttack>().topTimer;
+
         UpdatedPlayer = new Player(currentPlayer.playerCreation, currentPlayer.playerID, currentCharacterID, playerXP, currentLevel, currentCharacterWeaponID, currentPlayerEnemiesKilled, currentPlayerDamageTaken, currentPlayerShortTime);
         currentPlayer = UpdatedPlayer;
     }

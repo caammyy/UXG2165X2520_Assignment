@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CharacterSelect.unity
     guid: b1747d5c634c79e4e9a387d0f8bd4eb3
   - enabled: 1
+    path: Assets/Scenes/Summary.unity
+    guid: cb884a254a1e5584486b8eaf02514b3e
+  - enabled: 1
     path: Assets/Scenes/dialogue.unity
     guid: 7491ff6c94bdcea4191aa8f2c69eed7f
   - enabled: 1
