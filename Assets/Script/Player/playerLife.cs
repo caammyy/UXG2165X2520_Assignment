@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,9 +17,13 @@ public class playerLife : MonoBehaviour
     public int currentCharacterHp;
     public string currentCharacterName;
     public string currentCharacterWeaponID;
+
     private List<Weapon> wList;
     private int aniWeapon = 0;
     public int unlockedWeapons = 0;
+
+    public List<Characters> cList;
+    public string selectedCharacterName;
 
     //analytics
     public int currentPlayerEnemiesKilled;
@@ -53,6 +58,7 @@ public class playerLife : MonoBehaviour
     }
     private void Update()
     {
+        UpdateCharacter();
         SetLevel();
         if (currentPlayer.playerCharacterID == "C01")
         {
@@ -63,6 +69,7 @@ public class playerLife : MonoBehaviour
         playerHealth = currentCharacterHp + currentPlayerLevel.levelHP;
 
         UpdatePlayer();
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -260,4 +267,28 @@ public class playerLife : MonoBehaviour
             UpdateWeapon();
         }
     }
+    public void UpdateCharacter()
+    {
+        cList = Game.GetCharacterList();
+        for (int i = 0; i < cList.Count; i++)
+        {
+            GameObject.Find("/Canvas/CharactersPanel/C0" + (i + 1)).GetComponent<Image>().color = (Color)(new Color32(255, 255, 255, 255));
+        }
+        if (!(selectedCharacterName == currentCharacterName))
+        {
+            foreach (Characters c in cList)
+            {
+                if (selectedCharacterName == c.characterName)
+                {
+                    currentCharacterHp = c.characterHp;
+                    currentCharacterID = c.characterID;
+                    currentCharacterWeaponID = c.weaponID;
+                    currentCharacterName = c.characterName;
+                }
+            }
+        }
+        GameObject.Find("/Canvas/CharactersPanel/" + currentCharacterID).GetComponent<Image>().color = (Color)(new Color32(130, 130, 130, 255));
+
+    }
+    
 }

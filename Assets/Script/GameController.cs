@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour
 {
@@ -45,13 +46,10 @@ public class GameController : MonoBehaviour
             
     }      //test 
 
-    private void Awake()
+    public void OnClickCharacter()
     {
-       
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerLife pl = GameObject.Find("/GameController/Player(Clone)").GetComponent<playerLife>();
+        pl.selectedCharacterName = EventSystem.current.currentSelectedGameObject.name;
+        pl.UpdateCharacter();
     }
 }

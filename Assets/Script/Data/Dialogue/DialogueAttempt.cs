@@ -17,6 +17,7 @@ public class DialogueAttempt : MonoBehaviour
     public Image Space;
     public TextMeshProUGUI SelectInstructions;
     public Button NextSceneButton;
+    public Button nextButton;
 
     public TextMeshProUGUI Testname;
     public GameObject dialogueBox;
@@ -34,7 +35,7 @@ public class DialogueAttempt : MonoBehaviour
 
     //default starting cutscene
     int currentCutsceneID = 101;
-    int index = 0;
+    public int index = 1;
     public bool isChoice;
     public int nextScene = 101001;
     bool cutsceneOver = true;
@@ -96,10 +97,13 @@ public class DialogueAttempt : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {          
-            ReadCutscene();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Debug.Log("cutscenerefid: "+currentCutscene[index].cutsceneRefID);
+        //    Debug.Log("nextcutscenrefid: "+currentCutscene[index].nextcutsceneRefID);
+        //    ReadCutscene();
+        //}
+        Debug.Log(cutsceneOver);
     }
 
     public void CutSceneSet()
@@ -129,28 +133,35 @@ public class DialogueAttempt : MonoBehaviour
     {
         CutSceneSet();
 
-        if (isChoice)
-        {
-            return;
-        }
+        //if (isChoice)
+        //{
+        //    return;
+        //}
 
-        else
+        //else
+        //{
+
+        //}
+        //if choice show choice
+        if (index < currentCutscene.Count)
         {
-            //if choice show choice
             if (currentCutscene[index].nextcutsceneRefID == -2)
             {
-                isChoice = true;
-
+                //isChoice = true;
+                if (currentCutscene[index].leftEmotion != "-1")
+                {
                     AssetManager.LoadSprite(currentCutscene[index].leftEmotion, (Sprite s) =>
                     {
                         leftEmotion.GetComponent<Image>().sprite = s;
                     });
-
+                }
+                if (currentCutscene[index].leftImage != "-1")
+                {
                     AssetManager.LoadSprite(currentCutscene[index].leftImage, (Sprite s) =>
                     {
                         leftImage.GetComponent<Image>().sprite = s;
                     });
-
+                }
                 HideImage(Space);
                 SelectInstructions.gameObject.SetActive(true);
                 HideImage(rightEmotion);
@@ -173,7 +184,6 @@ public class DialogueAttempt : MonoBehaviour
 
                 return; //ends the code so that it doesn't break :)
             }
-
             else
             {
                 ShowImage(Space);
@@ -193,7 +203,81 @@ public class DialogueAttempt : MonoBehaviour
                     });
                 }
 
-                Debug.Log(currentCutscene[index].leftEmotion);
+                if (currentCutscene[index].rightEmotion != "-1")
+                {
+                    HideImage(leftEmotion);
+                    ShowImage(rightEmotion);
+                    AssetManager.LoadSprite(currentCutscene[index].rightEmotion, (Sprite s) =>
+                    {
+                        rightEmotion.GetComponent<Image>().sprite = s;
+                    });
+                }
+
+                //normal dialogue
+                if (currentCutscene[index].currentSpeaker == "Left")
+                {
+                    SelectInstructions.gameObject.SetActive(false);
+                    HideImage(Space);
+                    HideImage(rightEmotion);
+                    HideImage(rightImage);
+                    ShowImage(leftImage);
+                    Testname.text = currentCutscene[index].leftSpeaker;
+                    AssetManager.LoadSprite(currentCutscene[index].leftImage, (Sprite s) =>
+                    {
+                        leftImage.GetComponent<Image>().sprite = s;
+                    });
+
+                }
+
+                if (currentCutscene[index].currentSpeaker == "Right")
+                {
+                    SelectInstructions.gameObject.SetActive(false);
+                    HideImage(Space);
+                    HideImage(leftEmotion);
+                    HideImage(leftImage);
+                    ShowImage(rightImage);
+                    Testname.text = currentCutscene[index].rightSpeaker;
+                    AssetManager.LoadSprite(currentCutscene[index].rightImage, (Sprite s) =>
+                    {
+                        rightImage.GetComponent<Image>().sprite = s;
+                    });
+                }
+                index++;
+            }
+            //if (currentCutscene[index].nextcutsceneRefID == -1)
+            if (nextScene == -1)
+            {
+                cutsceneOver = true;
+                nextButton.enabled = false;
+                GC.currentCutsceneID = currentCutsceneID + 1;
+                Invoke("GoNextLevel", 2.0f);
+            }
+        }
+        
+    }
+
+    public void ReadCutsceneChoice(int destination)
+    {
+        CutSceneSet();
+
+        if (index < currentCutscene.Count)
+        {
+            if (currentCutscene[index].cutsceneRefID == destination)
+            {
+                DialogueText.text = currentCutscene[index].dialogue;
+                nextScene = currentCutscene[index].nextcutsceneRefID;
+
+                HideBox(selectionBox);
+                ShowBox(dialogueBox);
+
+                if (currentCutscene[index].leftEmotion != "-1")
+                {
+                    ShowImage(leftEmotion);
+                    AssetManager.LoadSprite(currentCutscene[index].leftEmotion, (Sprite s) =>
+                    {
+                        leftEmotion.GetComponent<Image>().sprite = s;
+                    });
+                }
 
                 if (currentCutscene[index].rightEmotion != "-1")
                 {
@@ -236,103 +320,28 @@ public class DialogueAttempt : MonoBehaviour
                 }
 
                 //check if cutscene over
-                if (currentCutscene[index].nextcutsceneRefID == -1)
+                //if (currentCutscene[index].nextcutsceneRefID == -1)
+                if (nextScene == -1)
                 {
                     cutsceneOver = true;
+                    nextButton.enabled = false;
 
                     GC.currentCutsceneID = currentCutsceneID + 1;
                     Invoke("GoNextLevel", 2.0f);
                 }
 
-                index++;
-            }
-        }
-    }
-
-    public void ReadCutsceneChoice(int destination)
-    {
-        CutSceneSet();
-
-        if (currentCutscene[index].cutsceneRefID == destination)
-        {
-            DialogueText.text = currentCutscene[index].dialogue;
-            nextScene = currentCutscene[index].nextcutsceneRefID;
-
-            HideBox(selectionBox);
-            ShowBox(dialogueBox);
-
-            if (currentCutscene[index].leftEmotion != "-1")
-            {
-                ShowImage(leftEmotion);
-                AssetManager.LoadSprite(currentCutscene[index].leftEmotion, (Sprite s) =>
+                //isChoice = false;
+                while (currentCutscene[index].cutsceneRefID != nextScene)
                 {
-                    leftEmotion.GetComponent<Image>().sprite = s;
-                });
+                    index++;
+                }
             }
 
-            Debug.Log(currentCutscene[index].leftEmotion);
-
-            if (currentCutscene[index].rightEmotion != "-1")
-            {
-                HideImage(leftEmotion);
-                ShowImage(rightEmotion);
-                AssetManager.LoadSprite(currentCutscene[index].rightEmotion, (Sprite s) =>
-                {
-                    rightEmotion.GetComponent<Image>().sprite = s;
-                });
-            }
-
-            //normal dialogue
-            if (currentCutscene[index].currentSpeaker == "Left")
-            {
-                SelectInstructions.gameObject.SetActive(false);
-                HideImage(Space);
-                HideImage(rightEmotion);
-                HideImage(rightImage);
-                ShowImage(leftImage);
-                Testname.text = currentCutscene[index].leftSpeaker;
-                AssetManager.LoadSprite(currentCutscene[index].leftImage, (Sprite s) =>
-                {
-                    leftImage.GetComponent<Image>().sprite = s;
-                });
-
-            }
-
-            if (currentCutscene[index].currentSpeaker == "Right")
-            {
-                SelectInstructions.gameObject.SetActive(false);
-                HideImage(Space);
-                HideImage(leftEmotion);
-                HideImage(leftImage);
-                ShowImage(rightImage);
-                Testname.text = currentCutscene[index].rightSpeaker;
-                AssetManager.LoadSprite(currentCutscene[index].rightImage, (Sprite s) =>
-                {
-                    rightImage.GetComponent<Image>().sprite = s;
-                });
-            }
-
-            //check if cutscene over
-            if (currentCutscene[index].nextcutsceneRefID == -1)
-            {
-                cutsceneOver = true;
-
-                GC.currentCutsceneID = currentCutsceneID + 1;
-                Invoke("GoNextLevel", 2.0f);
-            }
-
-            isChoice = false;
-            
-            while(currentCutscene[index].cutsceneRefID != nextScene)
+            else
             {
                 index++;
+                ReadCutsceneChoice(destination);
             }
-        }
-
-        else
-        {
-            index++;
-            ReadCutsceneChoice(destination);
         }
     }
 
@@ -345,10 +354,12 @@ public class DialogueAttempt : MonoBehaviour
         HideImage(rightEmotion);
         SelectInstructions.gameObject.SetActive(false);
         NextSceneButton.gameObject.SetActive(false);
+        ReadCutscene();
     }
 
     public void GoNextLevel()
     {
+        Debug.Log("teleporting");
         SceneManager.LoadScene("Level_0");
     }
 }
