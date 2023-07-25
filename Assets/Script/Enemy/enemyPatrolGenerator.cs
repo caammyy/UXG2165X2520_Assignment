@@ -113,10 +113,13 @@ public class enemyPatrolGenerator : MonoBehaviour
             }
             if (noOfEnemies == 0)
             {
-                if (weapon < 2)
+                if (GameObject.Find("/GameController/Player(Clone)").GetComponent<playerLife>().currentCharacterID == "C01")
                 {
-                    transform.position = walls.transform.position;
-                    spawnWeapon(walls);
+                    if (weapon < 2)
+                    {
+                        transform.position = walls.transform.position;
+                        spawnWeapon(walls);
+                    }
                 }
                 Destroy(walls.gameObject);
                 if (noOfSections > 0 &&(noOfSectionsCompleted < noOfSections-1))
