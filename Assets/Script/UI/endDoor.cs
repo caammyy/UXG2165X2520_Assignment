@@ -11,6 +11,6 @@ public class endDoor : MonoBehaviour
     }
     public void GoNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Dialogue");
     }
 }
