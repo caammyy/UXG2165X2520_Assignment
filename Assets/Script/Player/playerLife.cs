@@ -76,6 +76,7 @@ public class playerLife : MonoBehaviour
         if (collision.gameObject.CompareTag("Trigger"))
         {
             playerTut.InitializeNextTutorial();
+            collision.enabled = false;
         }
         else if (collision.gameObject.CompareTag("EndDoor"))
         {

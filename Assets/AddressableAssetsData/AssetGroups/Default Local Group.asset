@@ -89,6 +89,14 @@ MonoBehaviour:
     m_Address: Assets/Prefab/Bob.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 39d4d544f00beb148838b8d464a29a40
+    m_Address: Assets/Script/Data/Images/Bob.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7a49b078b2af9e740bf3ec4ee27468dd
+    m_Address: Assets/Script/Data/Images/Boy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 790e9199e6e487c40990b0a1910c969a, type: 2}
   m_SchemaSet:
