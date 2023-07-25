@@ -17,10 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6d98bd29c5733de418e475608cbddc75
   m_SerializeEntries:
-  - m_GUID: 84cb518fe75e5044cbce8e81de5a8c79
-    m_Address: Assets/Art/Character (RedHood)
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: d1b5d828878a4eb489edfb54adcd49a1
     m_Address: Assets/Script/Data/Images/Girl.png
     m_ReadOnly: 0
@@ -79,6 +75,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 5f829566d01cabf49b5f0ca12e66cc14
     m_Address: Demodata
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9f559cc556ea3d348b3fd04a6258f9e4
+    m_Address: Assets/Art/Character (RedHood)/red hood itch free Copy-Sheet.png
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

@@ -10,6 +10,7 @@ using UnityEngine.AddressableAssets;
 public class DataManager : MonoBehaviour
 {
     /**
+     * og data
    public T ReadData<T>(string filepath)
    {
        string datastring = File.ReadAllText(filepath);
@@ -17,7 +18,6 @@ public class DataManager : MonoBehaviour
        //Debug.Log(datastring);
        return Data;
    }
-
   
    public void LoadRefData()
    {
@@ -31,33 +31,6 @@ public class DataManager : MonoBehaviour
 
        processData(dataScript);
    }
-    
-
-
-    public DataScript readRefData()
-    {
-        DataScript jsonData;
-
-        using (StreamReader r = new StreamReader(Path.Combine(Application.streamingAssetsPath, "jsonData2.txt")))
-        {
-            string json = r.ReadToEnd();
-            jsonData = JsonConvert.DeserializeObject<DataScript>(json);
-        }
-       // processData();
-        return jsonData;
-    }
-
-    public static void writeRefData(string filename, string output)
-    {
-        using (StreamWriter w = new StreamWriter("assets/data/" + filename + ".json"))
-        {
-            string json = JsonConvert.SerializeObject(output);
-            w.Write(json);
-        }
-
-        return;
-    }
-
     **/
 
     public void LoadRefData(Action onLoaded)
