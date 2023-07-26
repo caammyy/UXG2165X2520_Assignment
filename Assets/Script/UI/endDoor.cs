@@ -13,6 +13,7 @@ public class endDoor : MonoBehaviour
     }
     public void GoNextLevel()
     {
+        PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("Summary");
     }
 }

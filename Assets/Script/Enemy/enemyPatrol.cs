@@ -76,6 +76,7 @@ public class enemyPatrol : MonoBehaviour
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * dir * speed,
             enemy.position.y, enemy.position.z);
         GetComponent<enemyLife>().enemyHB.healthbarSprite.transform.localScale = new Vector3(enemy.localScale.x, transform.localScale.y);
+        GetComponent<enemyLife>().enemyHB.health.transform.localScale = new Vector3(enemy.localScale.x, transform.localScale.y);
 
     }
 }

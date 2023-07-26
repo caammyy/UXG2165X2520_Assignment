@@ -208,7 +208,7 @@ public class DataManager : MonoBehaviour
         List<Scene> sceneList = new List<Scene>();
         foreach (RefScene refScene in dataScript.Scene)
         {
-            Scene scene = new Scene(refScene.sceneName, refScene.cutSceneSetID, refScene.gameLevelID);
+            Scene scene = new Scene(refScene.sceneName, refScene.cutsceneSetID, refScene.gameLevelID);
             sceneList.Add(scene);
         }
         Game.SetSceneList(sceneList);

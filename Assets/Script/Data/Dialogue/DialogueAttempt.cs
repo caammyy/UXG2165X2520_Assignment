@@ -32,12 +32,15 @@ public class DialogueAttempt : MonoBehaviour
     //bool waitforinput = true;
 
     //default starting cutscene
-    int currentCutsceneID = 101;
+    //int currentCutsceneID = 101;
+    int currentCutsceneID;
     public int index = 1;
     public bool isChoice;
     public int nextScene = 101001;
     bool cutsceneOver = true;
     List<Dialogue> currentCutscene;
+
+    private string lastScene;
 
     void Start()
     {
@@ -82,11 +85,6 @@ public class DialogueAttempt : MonoBehaviour
     public List<string> SplitStringToList(string strtosplit)
     {
         List<string> s = new List<string>(strtosplit.Split(new char[] { '#', '@' }));
-        foreach (string item in s)
-        {
-            Debug.Log(item);
-        }
- 
         return s;
         //s[0] = text1
         //s[1] = selected cutsceneid
@@ -94,24 +92,35 @@ public class DialogueAttempt : MonoBehaviour
    
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Debug.Log("cutscenerefid: "+currentCutscene[index].cutsceneRefID);
-        //    Debug.Log("nextcutscenrefid: "+currentCutscene[index].nextcutsceneRefID);
-        //    ReadCutscene();
-        //}
-        Debug.Log(cutsceneOver);
     }
 
     public void CutSceneSet()
     {
         if (cutsceneOver == true)
         {
+            List<Scene> sList = Game.GetSceneList();
+            if (PlayerPrefs.HasKey("LastScene"))
+            {
+                for (int i = 0; i < sList.Count; i++)
+                {
+                    if (sList[i].sceneName == PlayerPrefs.GetString("LastScene") && (i + 1) != sList.Count)
+                            currentCutsceneID = sList[i + 1].cutsceneSetID;
+                }
+            }
+            else
+            {
+                Debug.Log("else" + sList[0].sceneName);
+
+                Debug.Log("else" + sList[0].cutsceneSetID);
+                currentCutsceneID = sList[0].cutsceneSetID;
+            }
+            
+            Debug.Log(currentCutsceneID);
             List<Dialogue> dialogueList = Game.GetDialogueList();
             List<Dialogue> newCutscene = new List<Dialogue>();
             foreach (Dialogue d in dialogueList)
             {
-                if (d.cutsceneSetID == GC.currentCutsceneID)
+                if (d.cutsceneSetID == currentCutsceneID)
                 {
                     newCutscene.Add(d);
                 }
@@ -129,16 +138,6 @@ public class DialogueAttempt : MonoBehaviour
     public void ReadCutscene()
     {
         CutSceneSet();
-
-        //if (isChoice)
-        //{
-        //    return;
-        //}
-
-        //else
-        //{
-
-        //}
         //if choice show choice
         if (index < currentCutscene.Count)
         {
@@ -175,8 +174,6 @@ public class DialogueAttempt : MonoBehaviour
 
                 select2text.text = choices[2];
                 select2button.GetComponent<ButtonDestination>().destination = choices[3];
-
-                //this.GetComponent<SpriteRenderer>().sprite = AssetManager.LoadSprite(Game.GetImage())
 
                 return; //ends the code so that it doesn't break :)
             }
@@ -236,12 +233,11 @@ public class DialogueAttempt : MonoBehaviour
                 }
                 index++;
             }
-            //if (currentCutscene[index].nextcutsceneRefID == -1)
             if (nextScene == -1)
             {
                 cutsceneOver = true;
                 nextButton.enabled = false;
-                GC.currentCutsceneID = currentCutsceneID + 1;
+                currentCutsceneID = currentCutsceneID + 1;
                 Invoke("GoNextLevel", 2.0f);
             }
         }
@@ -310,17 +306,14 @@ public class DialogueAttempt : MonoBehaviour
                 }
 
                 //check if cutscene over
-                //if (currentCutscene[index].nextcutsceneRefID == -1)
                 if (nextScene == -1)
                 {
                     cutsceneOver = true;
                     nextButton.enabled = false;
 
-                    GC.currentCutsceneID = currentCutsceneID + 1;
+                    currentCutsceneID = currentCutsceneID + 1;
                     Invoke("GoNextLevel", 2.0f);
                 }
-
-                //isChoice = false;
                 while (currentCutscene[index].cutsceneRefID != nextScene)
                 {
                     index++;
@@ -349,6 +342,13 @@ public class DialogueAttempt : MonoBehaviour
     public void GoNextLevel()
     {
         Debug.Log("teleporting");
-        SceneManager.LoadScene("Level_0");
+        if (currentCutsceneID == 102)
+        {
+            SceneManager.LoadScene("CharacterSelect");
+        }
+        else if (currentCutsceneID == 103)
+        {
+            SceneManager.LoadScene("endScreen");
+        }
     }
 }

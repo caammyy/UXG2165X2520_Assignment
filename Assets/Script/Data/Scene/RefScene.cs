@@ -6,6 +6,6 @@ using UnityEngine;
 public class RefScene
 {
     public string sceneName;
-    public int cutSceneSetID;
+    public int cutsceneSetID;
     public int gameLevelID;
 }

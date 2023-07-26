@@ -7,7 +7,7 @@ public class ButtonCode : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync("dialogue");
     }
     public void ExitGame()
     {

@@ -18,7 +18,6 @@ public class summary : MonoBehaviour
     [SerializeField] private TMP_Text playerTimeTaken;
 
 
-
     // Start is called before the first frame update
     void Start()
     {

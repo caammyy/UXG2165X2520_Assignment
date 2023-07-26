@@ -20,12 +20,14 @@ public class playerStats : MonoBehaviour
 
     void SetStats()
     {
-        playerLife pl = GameObject.Find("GameController/Player(Clone)").GetComponent<playerLife>();
-        attackDamage.text = GameObject.Find("GameController/Player(Clone)").GetComponent<playerAttack>().currentAttackDamage.ToString();
-        totalHealth.text = pl.playerHealth.ToString();
-        enemiesKilled.text = pl.currentPlayerEnemiesKilled.ToString();
-        damageTaken.text = pl.currentPlayerDamageTaken.ToString();
-        shortestTime.text = GameObject.Find("GameController/Player(Clone)").GetComponent<playerAttack>().topTimer.ToString();
-
+        if (GameObject.Find("GameController/Player(Clone)") != null)
+        {
+            playerLife pl = GameObject.Find("GameController/Player(Clone)").GetComponent<playerLife>();
+            attackDamage.text = GameObject.Find("GameController/Player(Clone)").GetComponent<playerAttack>().currentAttackDamage.ToString();
+            totalHealth.text = pl.playerHealth.ToString();
+            enemiesKilled.text = pl.currentPlayerEnemiesKilled.ToString();
+            damageTaken.text = pl.currentPlayerDamageTaken.ToString();
+            shortestTime.text = GameObject.Find("GameController/Player(Clone)").GetComponent<playerAttack>().topTimer.ToString();
+        }
     }
 }

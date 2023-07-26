@@ -55,7 +55,8 @@ public class playerAttack : MonoBehaviour
             }
             else if (zoneTimer < topTimer)
             {
-                topTimer = zoneTimer;
+                topTimer = Mathf.RoundToInt(zoneTimer);
+
             }
         }
         

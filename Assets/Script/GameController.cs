@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour
 {
-    public int currentCutsceneID = 101;
+    //public int currentCutsceneID = 101;
 
 
     void Start()

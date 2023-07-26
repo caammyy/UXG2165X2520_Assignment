@@ -144,7 +144,6 @@ public class playerLife : MonoBehaviour
             }
             currentPlayer = new Player(DateTime.Now, currentPlayerID, currentCharacterID, 0, 1, currentCharacterWeaponID, 0, 0, 0);
             Game.SetPlayer(currentPlayer);
-            Debug.Log(Game.GetPlayer().GetPlayerCharacterID());
         }
         else
         {
