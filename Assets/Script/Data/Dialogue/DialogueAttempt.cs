@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+//Ashley and Cammy
 public class DialogueAttempt : MonoBehaviour
 {
     public GameController GC;

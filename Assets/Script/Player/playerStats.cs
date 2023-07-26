@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//Cammy
 public class playerStats : MonoBehaviour
 {
     [SerializeField] private TMP_Text attackDamage;

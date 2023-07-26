@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Ashley
 public class Weapon
 {
     public string weaponID { get; }

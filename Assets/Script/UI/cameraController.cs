@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Cammy
 public class cameraController : MonoBehaviour
 {
     public Transform player;

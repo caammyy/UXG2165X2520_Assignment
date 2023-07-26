@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//Cammy
 public class playerLife : MonoBehaviour
 {
     //body variables

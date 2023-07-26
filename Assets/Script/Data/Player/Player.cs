@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Cammy
 public class Player
 {
     public DateTime playerCreation { get; }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//from JY W8 Demo 1 
+//Cammy
 public class Characters  
 {
     public string characterID { get; }

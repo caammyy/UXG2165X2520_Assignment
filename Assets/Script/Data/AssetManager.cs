@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
+//Ashley and Cammy
 public static class AssetManager
 {
     private static string girlImagePath = "Assets/Script/Data/Images/{0}";
