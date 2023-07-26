@@ -40,15 +40,15 @@ public class enemyLife : MonoBehaviour
     }
     void disableEnemy()
     {
+        //player xp
+        GameObject p = GameObject.Find("/GameController/Player(Clone)");
+        p.GetComponent<playerLife>().playerXP += enemyXP;
         enemyHB.enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<Collider2D>().enabled = false;
     }
     void Die()
     {
-        //player xp
-        GameObject p = GameObject.Find("/GameController/Player(Clone)");
-        p.GetComponent<playerLife>().playerXP += enemyXP;
         Destroy(gameObject);
     }
 }

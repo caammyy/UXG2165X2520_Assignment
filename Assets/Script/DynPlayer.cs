@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class DynPlayer
 {
-    public DateTime playerCreation;
+    public string playerCreation;
     public string playerID;
     public string playerCharacterID;
     public int playerXP;

@@ -12,6 +12,6 @@ public class enemyHealthbar : MonoBehaviour
     public void UpdateHealthbar(float max, float current)
     {
         healthbarSprite.fillAmount = current / max;
-        health.text = Mathf.Clamp((Mathf.RoundToInt(current)), 0, max).ToString();
+        health.text = Mathf.Clamp((Mathf.Round(current * 10.0f) * 0.1f), 0, max).ToString();
     }
 }

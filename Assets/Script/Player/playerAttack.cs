@@ -17,14 +17,20 @@ public class playerAttack : MonoBehaviour
 
     public LayerMask enemyLayer;
 
-    public float topTimer = 0f;
-    public float zoneTimer = 0f;
+    public float topTimer;
+    public float zoneTimer;
     public bool startZoneTimer = false;
 
 
     float nextAttackTime = 0f;
 
     // Update is called once per frame
+
+    private void Start()
+    {
+        topTimer = 0f;
+        zoneTimer = 0f;
+}
     void Update()
     {
         SetPlayerWeapon(); 
@@ -52,14 +58,14 @@ public class playerAttack : MonoBehaviour
             if (topTimer == 0f && zoneTimer > 0f)
             {
                 topTimer = zoneTimer;
+
             }
             else if (zoneTimer < topTimer)
             {
-                topTimer = Mathf.RoundToInt(zoneTimer);
-
+                topTimer = zoneTimer;
             }
         }
-        
+
 
     }
     void MeleeAttack()
@@ -70,8 +76,9 @@ public class playerAttack : MonoBehaviour
         //damage enemies
         foreach(Collider2D enemy in hitEnemies)
         {
-            if (GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().noOfEnemies == 3)
+            if (GameObject.Find("EnemyPatrolGenerator").GetComponent<enemyPatrolGenerator>().noOfEnemies == 3 && !startZoneTimer)
             {
+
                 zoneTimer = 0f;
                 startZoneTimer = true;
             }

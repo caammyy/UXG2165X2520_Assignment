@@ -103,18 +103,24 @@ public class DialogueAttempt : MonoBehaviour
             {
                 for (int i = 0; i < sList.Count; i++)
                 {
-                    if (sList[i].sceneName == PlayerPrefs.GetString("LastScene") && (i + 1) != sList.Count)
+                    if (sList[i].sceneName == PlayerPrefs.GetString("LastScene"))
+                    {
+                        if ((i + 1) != sList.Count)
+                        {
                             currentCutsceneID = sList[i + 1].cutsceneSetID;
+                            PlayerPrefs.DeleteKey("LastScene");
+                        }
+                        else
+                        {
+                            currentCutsceneID = sList[0].cutsceneSetID;
+                        }
+                    }
                 }
             }
             else
             {
-                Debug.Log("else" + sList[0].sceneName);
-
-                Debug.Log("else" + sList[0].cutsceneSetID);
                 currentCutsceneID = sList[0].cutsceneSetID;
             }
-            
             Debug.Log(currentCutsceneID);
             List<Dialogue> dialogueList = Game.GetDialogueList();
             List<Dialogue> newCutscene = new List<Dialogue>();

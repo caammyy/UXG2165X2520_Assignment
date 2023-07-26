@@ -9,7 +9,7 @@ public class playerStats : MonoBehaviour
     [SerializeField] private TMP_Text totalHealth;
     [SerializeField] private TMP_Text enemiesKilled;
     [SerializeField] private TMP_Text damageTaken;
-    [SerializeField] private TMP_Text shortestTime;
+    [SerializeField] public TMP_Text shortestTime;
 
 
     // Update is called once per frame

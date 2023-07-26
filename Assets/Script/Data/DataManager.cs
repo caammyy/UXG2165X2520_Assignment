@@ -9,30 +9,6 @@ using UnityEngine.AddressableAssets;
 
 public class DataManager : MonoBehaviour
 {
-    /**
-     * og data
-   public T ReadData<T>(string filepath)
-   {
-       string datastring = File.ReadAllText(filepath);
-       T Data = JsonUtility.FromJson<T>(datastring);
-       //Debug.Log(datastring);
-       return Data;
-   }
-  
-   public void LoadRefData()
-   {
-       string filePath = Path.Combine(Application.dataPath, "Script/Data/jsonData2.txt");
-       //persistent data path is for when you want to save the game data(?), data path is for the data alr inside unity
-
-       //string dataString = File.ReadAllText(filePath);
-       //Debug.Log(dataString);
-       DataScript dataScript = ReadData<DataScript>(filePath);
-      // DataScript dataScript = JsonUtility.FromJson<DataScript>(dataString);
-
-       processData(dataScript);
-   }
-    **/
-
     public void LoadRefData(Action onLoaded)
     {
         StartCoroutine(DoLoadRefData("Demodata", onLoaded));
@@ -100,7 +76,8 @@ public class DataManager : MonoBehaviour
     private DynPlayer MakeSaveData(Player player)
     {
         DynPlayer dynplayer = new DynPlayer();
-        dynplayer.playerCreation = player.GetPlayerCreation();
+
+        dynplayer.playerCreation = player.GetPlayerCreation().ToString("yyyy-MM-dd HH:mm:ss");
         dynplayer.playerID = player.GetPlayerID();
         dynplayer.playerCharacterID = player.GetPlayerCharacterID();
         dynplayer.playerXP = player.GetPlayerXP();
@@ -115,13 +92,13 @@ public class DataManager : MonoBehaviour
 
     private Player LoadSaveData(DynPlayer dynPlayer)
     {
-        Player player = new Player(dynPlayer.playerCreation, dynPlayer.playerID, dynPlayer.playerCharacterID,
+        Player player = new Player(DateTime.Parse(dynPlayer.playerCreation), dynPlayer.playerID, dynPlayer.playerCharacterID,
             dynPlayer.playerXP, dynPlayer.playerLevelNo, dynPlayer.playerWeaponID, dynPlayer.playerEnemiesKilled,
             dynPlayer.playerDamageTaken, dynPlayer.playerShortestTimeTakenSection);
 
         return player;
     }
-
+    
     public void processData(DataScript dataScript)
     {
         //characters

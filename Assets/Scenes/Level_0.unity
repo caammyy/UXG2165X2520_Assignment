@@ -1314,7 +1314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997b10534ee02db4790c58fa076e1b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCutsceneID: 101
 --- !u!4 &301193927
 Transform:
   m_ObjectHideFlags: 0

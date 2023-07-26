@@ -19,13 +19,13 @@ public class GameController : MonoBehaviour
         if (!datamanager.LoadPlayerData())
         {
             Game.SetPlayer(new Player(DateTime.Now, "1", "C01", 0, 0, "W01", 0, 0, 0f));
-            Debug.Log("Player saved");
         }
     }
 
     public void OnDataLoad()
     {
         //run what u want after the data has finished loading
+        Debug.Log(Game.GetPlayer().GetPlayerCreation());
         if (SceneManager.GetActiveScene().name.Contains("dialogue"))
         {
             DialogueAttempt da = GameObject.Find("DialogueManager").GetComponent<DialogueAttempt>();
